@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Summer Wreath Class Registration – Scrap N Sew Mom</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal:   #00a99d;
+      --pink:   #e8457a;
+      --yellow: #f7c948;
+      --cream:  #fffbf2;
+      --light:  #f4f9f9;
+      --border: #d6ece9;
+      --text:   #2c2c2c;
+      --muted:  #6b7070;
+      --dark:   #1a4a47;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      background: var(--teal);
+      color: #fff;
+      text-align: center;
+      padding: 12px 20px;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, var(--teal) 0%, #00c4b4 40%, var(--pink) 100%);
+      color: #fff;
+      text-align: center;
+      padding: 52px 20px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '🌸 ☀️ 🌺 🌻 🦩';
+      display: block;
+      font-size: 20px;
+      letter-spacing: 8px;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 5vw, 46px);
+      margin-bottom: 8px;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+    .hero h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(18px, 3.5vw, 30px);
+      font-style: italic;
+      font-weight: 400;
+      margin-bottom: 10px;
+      opacity: 0.92;
+    }
+    .hero p {
+      font-size: 15px;
+      opacity: .85;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ── Info strip ── */
+    .info-strip {
+      background: var(--pink);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+    .info-strip span {
+      padding: 11px 28px;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 700;
+      border-right: 1px solid rgba(255,255,255,.3);
+    }
+    .info-strip span:last-child { border-right: none; }
+
+    /* ── Layout ── */
+    .page-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 36px 20px 60px;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 32px;
+    }
+    @media (max-width: 780px) {
+      .page-wrap { grid-template-columns: 1fr; }
+      .sidebar { order: -1; }
+    }
+
+    /* ── Form card ── */
+    .form-card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 24px rgba(0,169,157,0.10);
+      overflow: hidden;
+    }
+    .form-card-header {
+      background: var(--dark);
+      color: #fff;
+      padding: 20px 28px;
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+    }
+    .form-body { padding: 28px; }
+
+    /* Step indicator */
+    .steps { display: flex; align-items: center; margin-bottom: 28px; }
+    .step {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase; letter-spacing: .5px;
+    }
+    .step-num {
+      width: 28px; height: 28px; border-radius: 50%;
+      border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; flex-shrink: 0;
+    }
+    .step.active { color: var(--dark); }
+    .step.active .step-num { background: var(--dark); color: #fff; border-color: var(--dark); }
+    .step.done .step-num { background: var(--pink); color: #fff; border-color: var(--pink); }
+    .step-line { flex: 1; height: 2px; background: var(--border); margin: 0 8px; }
+    .step-line.done { background: var(--pink); }
+
+    /* Fields */
+    .field-group { margin-bottom: 20px; }
+    .field-group label {
+      display: block; font-size: 13px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .5px;
+      margin-bottom: 6px; color: var(--dark);
+    }
+    .field-group label .req { color: var(--pink); margin-left: 2px; }
+    .field-group input[type="text"],
+    .field-group input[type="email"],
+    .field-group input[type="tel"],
+    .field-group textarea,
+    .field-group select {
+      width: 100%; padding: 11px 14px;
+      border: 1.5px solid var(--border); border-radius: 8px;
+      font-family: 'Lato', sans-serif; font-size: 15px;
+      color: var(--text); background: #fff;
+      transition: border-color .2s; outline: none;
+    }
+    .field-group input:focus,
+    .field-group textarea:focus,
+    .field-group select:focus { border-color: var(--teal); }
+    .field-group textarea { min-height: 80px; resize: vertical; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 520px) { .field-row { grid-template-columns: 1fr; } }
+
+    /* Date buttons */
+    .date-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .date-btn {
+      border: 2px solid var(--border); border-radius: 10px;
+      padding: 14px 10px; text-align: center; cursor: pointer;
+      transition: border-color .2s, background .2s; position: relative;
+    }
+    .date-btn:hover { border-color: var(--teal); background: #f0faf9; }
+    .date-btn.selected { border-color: var(--teal); background: var(--teal); color: #fff; }
+    .date-btn input { display: none; }
+    .date-btn .day { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+    .date-btn .date { font-size: 18px; font-weight: 700; font-family: 'Playfair Display', serif; }
+    .date-btn .time { font-size: 12px; opacity: .75; }
+
+    /* Option groups */
+    .option-group { display: flex; flex-direction: column; gap: 10px; }
+    .option-label {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 14px 16px; border: 1.5px solid var(--border);
+      border-radius: 8px; cursor: pointer;
+      transition: border-color .2s, background .2s; font-size: 15px;
+    }
+    .option-label:hover { border-color: var(--teal); background: #f0faf9; }
+    .option-label input { margin-top: 2px; accent-color: var(--teal); flex-shrink: 0; }
+    .option-label.selected { border-color: var(--teal); background: #e6f7f6; }
+    .opt-text { flex: 1; }
+    .opt-title { font-weight: 700; display: block; }
+    .opt-sub { font-size: 13px; color: var(--muted); display: block; margin-top: 2px; }
+    .opt-price { margin-left: auto; font-weight: 700; color: var(--dark); white-space: nowrap; }
+
+    /* Checkbox */
+    .checkbox-label {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 14px 16px; border: 1.5px solid var(--border);
+      border-radius: 8px; cursor: pointer;
+      transition: border-color .2s, background .2s; font-size: 15px;
+    }
+    .checkbox-label:hover { border-color: var(--teal); background: #f0faf9; }
+    .checkbox-label input { margin-top: 2px; accent-color: var(--pink); flex-shrink: 0; }
+    .ch-text { flex: 1; }
+    .ch-title { font-weight: 700; display: block; }
+    .ch-sub { font-size: 13px; color: var(--muted); display: block; margin-top: 2px; }
+    .cc-badge {
+      background: var(--yellow); color: #5a4000; font-size: 11px;
+      font-weight: 700; padding: 2px 8px; border-radius: 12px;
+      margin-left: 8px; vertical-align: middle;
+    }
+
+    /* Order summary */
+    .order-summary {
+      background: var(--light); border-radius: 10px;
+      padding: 18px 20px; margin-bottom: 20px;
+      border: 1.5px solid var(--border);
+    }
+    .order-summary h4 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 12px; color: var(--dark); }
+    .order-row { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px; }
+    .order-row.total { font-weight: 700; font-size: 16px; border-top: 1.5px solid var(--border); padding-top: 10px; margin-top: 4px; color: var(--dark); }
+    .cc-fee { color: var(--muted); font-size: 13px; }
+
+    /* Payment options */
+    .payment-option {
+      border: 2px solid var(--border); border-radius: 10px;
+      padding: 16px 18px; cursor: pointer; margin-bottom: 10px;
+      transition: border-color .2s, background .2s;
+    }
+    .payment-option:hover { border-color: var(--teal); background: #f0faf9; }
+    .payment-option.selected { border-color: var(--teal); background: #e6f7f6; }
+    .payment-option input { accent-color: var(--teal); margin-right: 10px; }
+    .payment-option label { font-weight: 700; cursor: pointer; }
+    .payment-note { font-size: 13px; color: var(--muted); margin-top: 6px; padding-left: 24px; }
+
+    /* Payment pending section */
+    .payment-pending-box {
+      background: #e6f7f6; border: 1.5px solid var(--teal);
+      border-radius: 10px; padding: 24px 20px;
+      text-align: center; margin-bottom: 16px;
+    }
+    .payment-pending-box .ppb-icon { font-size: 2.2rem; margin-bottom: 10px; }
+    .payment-pending-box h4 { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--dark); margin-bottom: 8px; }
+    .payment-pending-box p { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+    .btn-open-again {
+      background: none; border: 1.5px solid var(--teal); color: var(--teal);
+      padding: 9px 20px; border-radius: 8px; font-size: 13px; font-weight: 700;
+      cursor: pointer; transition: background .2s, color .2s;
+    }
+    .btn-open-again:hover { background: var(--teal); color: #fff; }
+    .btn-confirm {
+      background: #1a7a3a !important;
+      font-size: 17px !important;
+      padding: 17px !important;
+      letter-spacing: .3px !important;
+    }
+    .btn-confirm:hover { background: #145f2c !important; }
+    .reset-link { text-align: center; margin-top: 10px; }
+    .reset-link button {
+      background: none; border: none; color: var(--muted); font-size: 13px;
+      cursor: pointer; text-decoration: underline; font-family: 'Lato', sans-serif;
+    }
+    .reset-link button:hover { color: var(--dark); }
+
+    /* Buttons */
+    .btn-primary {
+      width: 100%; padding: 15px; background: var(--teal);
+      color: #fff; border: none; border-radius: 10px;
+      font-family: 'Lato', sans-serif; font-size: 16px; font-weight: 700;
+      cursor: pointer; transition: background .2s, transform .1s;
+      letter-spacing: .5px; text-transform: uppercase;
+    }
+    .btn-primary:hover { background: var(--dark); transform: translateY(-1px); }
+    .btn-primary:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+    .btn-back {
+      background: none; border: 1.5px solid var(--border); color: var(--muted);
+      padding: 12px 24px; border-radius: 8px; font-size: 14px;
+      font-weight: 700; cursor: pointer; transition: border-color .2s;
+    }
+    .btn-back:hover { border-color: var(--teal); color: var(--teal); }
+    .btn-row { display: flex; gap: 12px; align-items: center; }
+
+    /* No-Refund Policy box */
+    .no-refund-box {
+      background: #fff8f0; border: 1.5px solid #e8a000;
+      border-radius: 8px; padding: 14px 16px; margin-bottom: 14px;
+    }
+    .no-refund-box .nrb-title {
+      font-weight: 700; font-size: 14px; color: #7a4500;
+      margin-bottom: 6px; display: flex; align-items: center; gap: 6px;
+    }
+    .no-refund-box p { font-size: 13px; color: #5a3a00; line-height: 1.65; }
+
+    /* Refund acknowledge checkbox */
+    .refund-ack {
+      border: 1.5px solid var(--border); border-radius: 8px;
+      padding: 14px 16px; margin-bottom: 20px;
+      display: flex; align-items: flex-start; gap: 12px; cursor: pointer;
+      transition: border-color .2s, background .2s;
+    }
+    .refund-ack:hover { border-color: var(--teal); background: #f0faf9; }
+    .refund-ack.checked { border-color: var(--teal); background: #e6f7f6; }
+    .refund-ack input { margin-top: 2px; accent-color: var(--teal); flex-shrink: 0; width: 16px; height: 16px; }
+    .refund-ack-text { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--dark); line-height: 1.5; }
+    .refund-ack-sub { font-size: 11px; font-weight: 400; color: var(--pink); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-top: 3px; }
+
+    /* Step panels */
+    .step-panel { display: none; }
+    .step-panel.active { display: block; }
+
+    /* Confirmation */
+    .confirm-card {
+      background: #fff; border-radius: 14px;
+      box-shadow: 0 4px 24px rgba(0,169,157,0.12);
+      padding: 40px 32px; text-align: center; display: none;
+    }
+    .confirm-card.active { display: block; }
+    .confirm-icon { font-size: 3.5rem; margin-bottom: 16px; }
+    .confirm-card h2 { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--dark); margin-bottom: 10px; }
+    .confirm-card p { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 8px; }
+    .cd-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+    .cd-row:last-child { border-bottom: none; }
+    .cd-row span:first-child { color: var(--muted); }
+    .cd-row span:last-child { font-weight: 700; }
+    .confirm-detail { background: var(--light); border-radius: 10px; padding: 16px 20px; text-align: left; margin: 20px 0; }
+    .payment-instruction { background: #e6f7f6; border: 1.5px solid var(--teal); border-radius: 10px; padding: 16px 20px; margin-top: 20px; text-align: left; font-size: 14px; line-height: 1.7; }
+    .payment-instruction strong { color: var(--dark); }
+
+    /* Sidebar */
+    .sidebar-card {
+      background: #fff; border-radius: 14px;
+      box-shadow: 0 4px 24px rgba(0,169,157,0.10);
+      overflow: hidden; margin-bottom: 20px;
+    }
+    .sidebar-card-header {
+      background: var(--dark); color: #fff;
+      padding: 14px 20px; font-weight: 700; font-size: 14px;
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+    .sidebar-card-body { padding: 20px; }
+    .class-date-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 0; border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .class-date-item:last-child { border-bottom: none; }
+    .class-date-item .cdi-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--teal); flex-shrink: 0;
+    }
+    .price-tag {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px; font-weight: 700; color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .includes-list { list-style: none; font-size: 14px; line-height: 1.8; }
+    .includes-list li::before { content: '✓ '; color: var(--teal); font-weight: 700; }
+    .social-link { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); font-size: 14px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+    .social-link:last-child { border-bottom: none; }
+    .social-link:hover { color: var(--teal); }
+    .social-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+    .si-fb { background: #1877f2; }
+    .si-etsy { background: #f1641e; }
+  </style>
+</head>
+<body>
+
+  <div class="site-header">ScrapNSewMom · Winslow, Maine · www.facebook.com/scrapnsewmom</div>
+
+  <div class="hero">
+    <h1>🌻 Wreath Class</h1>
+    <h2>All Things Summer</h2>
+    <p>Create a gorgeous 24-inch deco mesh wreath — all materials provided by Amy!</p>
+  </div>
+
+  <div class="info-strip">
+    <span>📅 June 6th or 7th</span>
+    <span>🕐 11:00 AM – 2:00 PM</span>
+    <span>💰 $50+ per person</span>
+    <span>📦 All materials included</span>
+  </div>
+
+  <div class="page-wrap">
+
+    <!-- ── Main Form ── -->
+    <div>
+      <div class="form-card" id="form-card">
+        <div class="form-card-header">Reserve Your Spot</div>
+        <div class="form-body">
+
+          <div class="steps">
+            <div class="step active" id="step-ind-1">
+              <div class="step-num">1</div>
+              <span>Your Registration</span>
+            </div>
+            <div class="step-line" id="line-1"></div>
+            <div class="step" id="step-ind-2">
+              <div class="step-num">2</div>
+              <span>Payment</span>
+            </div>
+          </div>
+
+          <!-- Step 1: Registration Info + Class Details -->
+          <div class="step-panel active" id="panel-1">
+            <div class="field-row">
+              <div class="field-group">
+                <label>First Name <span class="req">*</span></label>
+                <input type="text" id="f-first" placeholder="Jane" />
+              </div>
+              <div class="field-group">
+                <label>Last Name <span class="req">*</span></label>
+                <input type="text" id="f-last" placeholder="Smith" />
+              </div>
+            </div>
+            <div class="field-group">
+              <label>Email Address <span class="req">*</span></label>
+              <input type="email" id="f-email" placeholder="jane@example.com" />
+            </div>
+            <div class="field-group">
+              <label>Phone Number</label>
+              <input type="tel" id="f-phone" placeholder="(207) 555-0123" />
+            </div>
+            <div class="field-group">
+              <label>How did you hear about this class?</label>
+              <select id="f-referral">
+                <option value="">Select one…</option>
+                <option>Facebook</option>
+                <option>Instagram</option>
+                <option>Etsy</option>
+                <option>Friend / Word of mouth</option>
+                <option>Returning student</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label>Choose Your Class Date <span class="req">*</span></label>
+              <div class="date-grid">
+                <label class="date-btn" onclick="selectDate(this, 'Friday, June 6')">
+                  <input type="radio" name="classDate" value="Friday, June 6" />
+                  <div class="day">Friday</div>
+                  <div class="date">June 6</div>
+                  <div class="time">11:00 AM – 2:00 PM</div>
+                </label>
+                <label class="date-btn" onclick="selectDate(this, 'Saturday, June 7')">
+                  <input type="radio" name="classDate" value="Saturday, June 7" />
+                  <div class="day">Saturday</div>
+                  <div class="date">June 7</div>
+                  <div class="time">11:00 AM – 2:00 PM</div>
+                </label>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label>Wreath Style <span class="req">*</span></label>
+              <div class="option-group" id="style-group">
+                <label class="option-label" onclick="selectOption(this, 'style-group')">
+                  <input type="radio" name="wreathStyle" value="Hello Summer" />
+                  <span class="opt-text">
+                    <span class="opt-title">Hello Summer 🌊</span>
+                    <span class="opt-sub">Teal, pink & yellow — beach & sunshine vibes</span>
+                  </span>
+                  <span class="opt-price">$50</span>
+                </label>
+                <label class="option-label" onclick="selectOption(this, 'style-group')">
+                  <input type="radio" name="wreathStyle" value="Sunflower Summer" />
+                  <span class="opt-text">
+                    <span class="opt-title">Sunflower Summer 🌻</span>
+                    <span class="opt-sub">Warm golds, greens & rustic summer harvest</span>
+                  </span>
+                  <span class="opt-price">$50</span>
+                </label>
+              </div>
+              <p style="font-size:13px; color:var(--muted); margin-top:8px;">
+                💌 Amy will send you final sign choices before class.
+              </p>
+            </div>
+
+            <div class="field-group">
+              <label>Add-Ons</label>
+              <label class="checkbox-label">
+                <input type="checkbox" id="f-addon" onchange="updateOrderSummary()" />
+                <span class="ch-text">
+                  <span class="ch-title">Attachment Add-On <span style="color:var(--pink)">+$10</span></span>
+                  <span class="ch-sub">Enhance your finished wreath with an attachment. Add it during registration!</span>
+                </span>
+              </label>
+            </div>
+
+            <div class="field-group">
+              <label>Special Requests or Notes</label>
+              <textarea id="f-notes" placeholder="Any allergies, accessibility needs, or questions for Amy…"></textarea>
+            </div>
+
+            <button class="btn-primary" onclick="goToStep(2)">Continue to Payment →</button>
+          </div>
+
+          <!-- Step 2: Payment -->
+          <div class="step-panel" id="panel-2">
+
+            <div class="order-summary">
+              <h4>Order Summary</h4>
+              <div class="order-row"><span>All Things Summer Wreath Class</span><span>$50.00</span></div>
+              <div class="order-row" id="addon-row" style="display:none"><span>Attachment Add-On</span><span>+$10.00</span></div>
+              <div class="order-row cc-fee" id="cc-fee-row"><span>Credit Card Handling Fee</span><span>+$3.00</span></div>
+              <div class="order-row total"><span>Total Due</span><span id="total-display">$50.00</span></div>
+            </div>
+
+            <div class="no-refund-box">
+              <div class="nrb-title">⚠️ No-Refund Policy</div>
+              <p>All class registrations are non-refundable. Materials are purchased specifically for each student. If you are unable to attend, you may take your kit home to make on your own with limited instruction, or Amy can make it for you to be picked up at a later date.</p>
+            </div>
+            <label class="refund-ack" id="refund-ack-label" onclick="toggleAck(this)">
+              <input type="checkbox" id="f-refund-ack" />
+              <div>
+                <span class="refund-ack-text">I understand and agree to the no-refund policy</span>
+                <span class="refund-ack-sub">Required to complete registration</span>
+              </div>
+            </label>
+
+            <div class="field-group">
+              <label>Payment Method <span class="req">*</span></label>
+              <div class="payment-option" onclick="selectPayment(this, 'venmo')">
+                <input type="radio" name="payment" value="venmo" /> <label>Venmo</label>
+                <div class="payment-note">Send payment to <strong>@ScrapNSewMom</strong> — include your name and "Summer Wreath Class" in the memo. <em>No fee.</em></div>
+              </div>
+              <div class="payment-option" onclick="selectPayment(this, 'paypal')">
+                <input type="radio" name="payment" value="paypal" /> <label>PayPal</label>
+                <div class="payment-note">Send payment via PayPal to <strong>@ScrapNSewMom</strong> — include your name in the note. <em>No fee.</em></div>
+              </div>
+              <div class="payment-option" onclick="selectPayment(this, 'credit')">
+                <input type="radio" name="payment" value="credit" /> <label>Credit Card via Square <span class="cc-badge">+$3 fee</span></label>
+                <div class="payment-note">You'll receive a secure Square payment link after registering. A $3 handling fee is added to your total.</div>
+              </div>
+            </div>
+
+            <div class="order-summary" id="payment-summary">
+              <h4>Payment Total</h4>
+              <div class="order-row"><span>All Things Summer Wreath Class</span><span>$50.00</span></div>
+              <div class="order-row" id="p-addon-row" style="display:none"><span>Attachment Add-On</span><span>+$10.00</span></div>
+              <div class="order-row cc-fee" id="p-cc-fee-row" style="display:none"><span>Credit Card Handling Fee</span><span>+$3.00</span></div>
+              <div class="order-row total"><span>Total Due</span><span id="p-total-display">$50.00</span></div>
+            </div>
+
+            <div id="proceed-section">
+              <div class="btn-row">
+                <button class="btn-back" onclick="goToStep(1)">← Back</button>
+                <button class="btn-primary" onclick="proceedToPayment()" style="flex:1">Proceed to Payment →</button>
+              </div>
+            </div>
+
+            <div id="payment-pending" style="display:none">
+              <div class="payment-pending-box">
+                <div class="ppb-icon">💳</div>
+                <h4>Complete your payment</h4>
+                <p>A new window has opened for your payment. Once you've finished, return here and click the button below to confirm your registration.</p>
+                <button class="btn-open-again" onclick="openPaymentWindow()">↗ Open payment window again</button>
+              </div>
+              <button class="btn-primary btn-confirm" onclick="confirmPayment()">✓ I've Completed My Payment</button>
+              <div class="reset-link">
+                <button onclick="resetToPaymentMethod()">← Choose a different payment method</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Confirmation -->
+      <div class="confirm-card" id="confirm-card">
+        <div class="confirm-icon">🌻</div>
+        <h2>You're registered!</h2>
+        <p>Thank you for signing up for the <strong>All Things Summer Wreath Class</strong>.</p>
+        <p>Amy will be in touch soon with your sign choices and class details.</p>
+        <div class="confirm-detail" id="confirm-detail"></div>
+        <div class="payment-instruction" id="payment-instruction"></div>
+      </div>
+    </div>
+
+    <!-- ── Sidebar ── -->
+    <aside class="sidebar">
+
+      <div class="sidebar-card step1-only">
+        <div class="sidebar-card-header">🔔 Good to Know</div>
+        <div class="sidebar-card-body">
+          <div style="font-size:14px; line-height:1.9; display:flex; flex-direction:column; gap:10px;">
+            <div>💬 <strong>Communication</strong> will be via <strong>Facebook</strong> or <strong>text message</strong>.</div>
+            <div>🍓 <strong>Light refreshments</strong> will be provided. Please note any allergies in your registration.</div>
+            <div>🚫 <strong>No refunds</strong> — materials are pre-ordered per registrant.</div>
+            <div>🐱 <strong>Pet note:</strong> We have cats in the home, but they will not be present during class.</div>
+            <div>❓ Questions? Message us on Facebook or send a text!</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-card step1-only">
+        <div class="sidebar-card-header">📅 Class Dates</div>
+        <div class="sidebar-card-body">
+          <div class="class-date-item"><div class="cdi-dot"></div><div><strong>Friday, June 6th</strong><br/>11:00 AM – 2:00 PM</div></div>
+          <div class="class-date-item"><div class="cdi-dot"></div><div><strong>Saturday, June 7th</strong><br/>11:00 AM – 2:00 PM</div></div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-card-header">💰 Pricing</div>
+        <div class="sidebar-card-body">
+          <div class="price-tag">$50 per person</div>
+          <p style="font-size:13px; color:var(--muted); margin-bottom:14px;">Payment due at registration</p>
+          <p style="font-size:13px; font-weight:700; margin-bottom:8px;">✨ Attachment Add-On — +$10</p>
+          <p style="font-size:13px; color:var(--muted);">Enhance your finished wreath with an attachment. Add it during registration!</p>
+          <div style="margin-top:16px; padding-top:14px; border-top:1.5px solid var(--border);">
+            <p style="font-size:14px; font-weight:700; color:var(--dark);">Register early for the best sign selections!</p>
+            <p style="font-size:13px; color:var(--muted); margin-top:4px;">Sign options become limited as the class date approaches. Payment required to hold your seat.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-card step1-only">
+        <div class="sidebar-card-header">✅ What's Included</div>
+        <div class="sidebar-card-body">
+          <ul class="includes-list">
+            <li>All materials provided by Amy</li>
+            <li>24" deco mesh wreath frame</li>
+            <li>Ribbon, bow &amp; ribbon tails</li>
+            <li>Your choice of wreath sign</li>
+            <li>Step-by-step instruction</li>
+            <li>Sign choices sent before class</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-card-header">🌐 Find ScrapNSewMom</div>
+        <div class="sidebar-card-body">
+          <a href="https://www.facebook.com/scrapnsewmom" target="_blank" class="social-link">
+            <div class="social-icon si-fb">📘</div>
+            <span>facebook.com/scrapnsewmom</span>
+          </a>
+          <a href="https://www.etsy.com/shop/scrapnsewmom" target="_blank" class="social-link">
+            <div class="social-icon si-etsy">🛍</div>
+            <span>etsy.com/shop/scrapnsewmom</span>
+          </a>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+
+  <script>
+    // ── CONFIGURATION — update these before going live ──
+    const cfg = {
+      venmo:       'ScrapNSewMom',
+      paypalEmail: 'scrapnsewmom@gmail.com',
+      square:      'your-square-link',
+      emailTo:     'bharring64@gmail.com',
+      sheetsUrl:   'https://script.google.com/macros/s/AKfycbwLMqwLn3Kl1vK596rbD4DXNet3b7oowZI6IfQOr6XM-hivMw8e1zLP2cDAEcvK3Ujq/exec',
+    };
+
+    let currentStep = 1;
+    let selectedDate = '';
+    let selectedPayment = '';
+
+    function goToStep(n) {
+      if (n === 2) {
+        const first = document.getElementById('f-first').value.trim();
+        const last  = document.getElementById('f-last').value.trim();
+        const email = document.getElementById('f-email').value.trim();
+        const date  = document.querySelector('input[name="classDate"]:checked');
+        const style = document.querySelector('input[name="wreathStyle"]:checked');
+        if (!first || !last) { alert('Please enter your first and last name.'); return; }
+        if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
+        if (!date)  { alert('Please choose a class date.'); return; }
+        if (!style) { alert('Please choose a wreath style.'); return; }
+        selectedDate = date.value;
+        updateOrderSummary();
+        updatePaymentTotal();
+      }
+      document.getElementById('panel-' + currentStep).classList.remove('active');
+      document.getElementById('step-ind-' + currentStep).classList.remove('active');
+      if (currentStep < n) {
+        document.getElementById('step-ind-' + currentStep).classList.add('done');
+        document.getElementById('line-' + currentStep).classList.add('done');
+      }
+      currentStep = n;
+      document.getElementById('panel-' + currentStep).classList.add('active');
+      document.getElementById('step-ind-' + currentStep).classList.add('active');
+      document.querySelectorAll('.step1-only').forEach(el => {
+        el.style.display = currentStep === 1 ? 'block' : 'none';
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function selectDate(el, val) {
+      document.querySelectorAll('.date-btn').forEach(b => b.classList.remove('selected'));
+      el.classList.add('selected');
+      selectedDate = val;
+    }
+
+    function selectOption(el, groupId) {
+      document.querySelectorAll('#' + groupId + ' .option-label').forEach(l => l.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+
+    function selectPayment(el, method) {
+      document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('selected'));
+      el.classList.add('selected');
+      el.querySelector('input').checked = true;
+      selectedPayment = method;
+      updatePaymentTotal();
+    }
+
+    function updateOrderSummary() {
+      const hasAddon = document.getElementById('f-addon').checked;
+      document.getElementById('addon-row').style.display = hasAddon ? 'flex' : 'none';
+      const total = 50 + (hasAddon ? 10 : 0);
+      document.getElementById('total-display').textContent = '$' + total + '.00';
+    }
+
+    function updatePaymentTotal() {
+      const hasAddon = document.getElementById('f-addon').checked;
+      const isCc     = selectedPayment === 'credit';
+      document.getElementById('p-addon-row').style.display  = hasAddon ? 'flex' : 'none';
+      document.getElementById('p-cc-fee-row').style.display = isCc     ? 'flex' : 'none';
+      const total = 50 + (hasAddon ? 10 : 0) + (isCc ? 3 : 0);
+      document.getElementById('p-total-display').textContent = '$' + total + '.00';
+    }
+
+    function toggleAck(el) {
+      const cb = el.querySelector('input');
+      cb.checked = !cb.checked;
+      el.classList.toggle('checked', cb.checked);
+    }
+
+    let paymentData = null;
+    let paymentUrl  = '';
+
+    function proceedToPayment() {
+      if (!document.getElementById('f-refund-ack').checked) { alert('Please acknowledge the no-refund policy to continue.'); return; }
+      if (!selectedPayment) { alert('Please choose a payment method.'); return; }
+
+      const hasAddon  = document.getElementById('f-addon').checked;
+      const isCc      = selectedPayment === 'credit';
+      const total     = 50 + (hasAddon ? 10 : 0) + (isCc ? 3 : 0);
+      const className = 'All Things Summer Wreath Class';
+      const name      = document.getElementById('f-first').value.trim() + ' ' + document.getElementById('f-last').value.trim();
+      const note      = encodeURIComponent(className + ' – ' + name);
+
+      paymentData = {
+        name, className,
+        email:     document.getElementById('f-email').value.trim(),
+        phone:     document.getElementById('f-phone').value.trim() || 'Not provided',
+        referral:  document.getElementById('f-referral').value || 'Not specified',
+        classDate: selectedDate,
+        style:     document.querySelector('input[name="wreathStyle"]:checked')?.value || '',
+        notes:     document.getElementById('f-notes').value.trim() || 'None',
+        addon:     hasAddon ? 'Yes (+$10)' : 'No',
+        payment:   selectedPayment,
+        totalDue:  '$' + total + '.00',
+        timestamp: new Date().toLocaleString(),
+      };
+
+      if (selectedPayment === 'venmo')
+        paymentUrl = `https://venmo.com/${cfg.venmo}?txn=pay&amount=${total}&note=${note}`;
+      else if (selectedPayment === 'paypal')
+        paymentUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${encodeURIComponent(cfg.paypalEmail)}&amount=${total}&currency_code=USD&item_name=${note}`;
+      else
+        paymentUrl = `https://square.link/${cfg.square}`;
+
+      window.open(paymentUrl, '_blank');
+      document.getElementById('proceed-section').style.display = 'none';
+      document.getElementById('payment-pending').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function openPaymentWindow() {
+      window.open(paymentUrl, '_blank');
+    }
+
+    function resetToPaymentMethod() {
+      document.getElementById('payment-pending').style.display = 'none';
+      document.getElementById('proceed-section').style.display = 'block';
+    }
+
+    function confirmPayment() {
+      const d = paymentData;
+      document.getElementById('form-card').style.display = 'none';
+      document.getElementById('confirm-card').classList.add('active');
+
+      document.getElementById('confirm-detail').innerHTML =
+        [['Name', d.name], ['Email', d.email], ['Phone', d.phone],
+         ['Class Date', d.classDate], ['Wreath Style', d.style],
+         ['Attachment Add-On', d.addon], ['Payment Method', d.payment],
+         ['Total Due', d.totalDue]]
+        .map(r => `<div class="cd-row"><span>${r[0]}</span><span>${r[1]}</span></div>`).join('');
+
+      document.getElementById('payment-instruction').innerHTML =
+        `<strong>Payment confirmed!</strong> Thank you — Amy will be in touch soon with your sign choices and class details.`;
+
+      const subject = encodeURIComponent('Summer Wreath Class Registration – ' + d.name);
+      const body = encodeURIComponent(
+        'NEW REGISTRATION — All Things Summer Wreath Class\n' +
+        '==================================================\n' +
+        'Name:          ' + d.name + '\n' +
+        'Email:         ' + d.email + '\n' +
+        'Phone:         ' + d.phone + '\n' +
+        'Referral:      ' + d.referral + '\n\n' +
+        'Class Date:    ' + d.classDate + '\n' +
+        'Wreath Style:  ' + d.style + '\n' +
+        'Notes:         ' + d.notes + '\n\n' +
+        'Attachment:    ' + d.addon + '\n' +
+        'Payment:       ' + d.payment + '\n' +
+        'Total Due:     ' + d.totalDue + '\n\n' +
+        'Submitted: ' + d.timestamp
+      );
+      // Send registration data to Google Sheets
+      if (cfg.sheetsUrl && cfg.sheetsUrl !== 'YOUR_APPS_SCRIPT_URL_HERE') {
+        fetch(cfg.sheetsUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            timestamp:  d.timestamp,
+            name:       d.name,
+            email:      d.email,
+            phone:      d.phone,
+            referral:   d.referral,
+            classDate:  d.classDate,
+            style:      d.style,
+            addon:      d.addon,
+            payment:    d.payment,
+            totalDue:   d.totalDue,
+            className:  'All Things Summer Wreath Class'
+          })
+        }).catch(function(err) { console.log('Sheets error:', err); });
+      }
+
+      setTimeout(() => {
+        window.location.href = `mailto:${cfg.emailTo}?subject=${subject}&body=${body}`;
+      }, 800);
+    }
+  </script>
+</body>
+</html>
