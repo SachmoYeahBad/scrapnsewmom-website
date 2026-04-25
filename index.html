@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ScrapNSewMom – Wreaths & Home Decor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Nunito', sans-serif; background: #fff; color: #3a2a4a; overflow-x: hidden; }
+
+    .rainbow-bar {
+      height: 10px;
+      background: linear-gradient(to right, #ff0040, #ff6600, #ffcc00, #33cc33, #00aaff, #6633cc, #ff33cc);
+    }
+
+    nav {
+      background: #fff; padding: 14px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      box-shadow: 0 2px 12px rgba(160,60,200,0.10);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-brand {
+      font-family: 'Pacifico', cursive; font-size: 1.5rem;
+      background: linear-gradient(135deg, #e040c8, #7b2fbe, #00b8cc);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { text-decoration: none; font-weight: 700; color: #7b2fbe; font-size: 0.95rem; transition: color 0.2s; }
+    .nav-links a:hover { color: #e040c8; }
+
+    /* Hero */
+    .hero {
+      position: relative; min-height: 520px;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; overflow: hidden;
+      background: linear-gradient(135deg, #9b1fcc 0%, #7b2fbe 30%, #4a90c4 65%, #00b8cc 100%);
+      padding: 80px 20px;
+    }
+    .hero::before, .hero::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 70px;
+      background: repeating-linear-gradient(180deg,
+        #ff0040 0px, #ff0040 24px, #ff6600 24px, #ff6600 48px,
+        #ffcc00 48px, #ffcc00 72px, #33cc33 72px, #33cc33 96px,
+        #00aaff 96px, #00aaff 120px, #6633cc 120px, #6633cc 144px,
+        #ff33cc 144px, #ff33cc 168px);
+    }
+    .hero::before { left: 0; }
+    .hero::after  { right: 0; }
+    .hero-content { position: relative; z-index: 2; max-width: 750px; }
+
+    .hero-logo-ring {
+      width: 120px; height: 120px; border-radius: 50%;
+      background: linear-gradient(135deg, #ff33cc, #ffcc00, #00aaff, #33cc33);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+      box-shadow: 0 0 0 6px rgba(255,255,255,0.3), 0 8px 30px rgba(0,0,0,0.2);
+    }
+    .hero-logo-inner {
+      width: 100px; height: 100px; border-radius: 50%;
+      background: linear-gradient(135deg, #7b2fbe, #4a90c4);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      border: 3px solid #ff9900;
+    }
+    .hero-logo-inner span { font-weight: 800; font-size: 0.55rem; color: #fff; text-align: center; line-height: 1.3; }
+
+    .hero h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(2.4rem, 6vw, 4rem); color: #ff66cc;
+      text-shadow: 3px 3px 0 rgba(80,0,120,0.25);
+      line-height: 1.15; margin-bottom: 14px;
+    }
+    .hero-sub { font-size: 1.15rem; color: rgba(255,255,255,0.92); font-weight: 600; margin-bottom: 10px; }
+    .hero-tagline { font-size: 1rem; color: rgba(255,255,255,0.80); max-width: 520px; margin: 0 auto 32px; line-height: 1.6; }
+    .hero-btn {
+      display: inline-block; background: #ff33cc; color: #fff;
+      font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1rem;
+      padding: 14px 36px; border-radius: 50px; text-decoration: none;
+      box-shadow: 0 4px 20px rgba(255,51,204,0.4); transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .hero-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255,51,204,0.55); }
+
+    /* Sections */
+    section { padding: 72px 20px; }
+    .section-inner { max-width: 960px; margin: 0 auto; }
+    .section-title { font-family: 'Pacifico', cursive; font-size: clamp(1.8rem, 4vw, 2.6rem); text-align: center; margin-bottom: 12px; }
+    .section-divider { width: 80px; height: 5px; border-radius: 4px; margin: 0 auto 40px; background: linear-gradient(to right, #e040c8, #7b2fbe, #00b8cc); }
+
+    /* About */
+    #about { background: #fdf5ff; }
+    #about .section-title { color: #7b2fbe; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .about-art { display: flex; align-items: center; justify-content: center; }
+    .about-wreath-graphic {
+      width: 240px; height: 240px; border-radius: 50%;
+      background: linear-gradient(135deg, #ff33cc 0%, #9b1fcc 40%, #00b8cc 100%);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 40px rgba(155,31,204,0.25); position: relative;
+    }
+    .about-wreath-graphic::before { content: '🌿'; font-size: 5rem; }
+    .about-wreath-badge {
+      position: absolute; bottom: 8px; right: 8px;
+      background: #ffcc00; color: #3a2a4a; font-weight: 800;
+      font-size: 0.7rem; padding: 6px 12px; border-radius: 20px;
+    }
+    .about-text h3 { font-family: 'Pacifico', cursive; font-size: 1.4rem; color: #e040c8; margin-bottom: 16px; }
+    .about-text p { font-size: 1.02rem; line-height: 1.75; color: #4a3a5a; margin-bottom: 14px; }
+    .about-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .badge {
+      background: linear-gradient(135deg, #f3e0ff, #d4f0ff);
+      color: #7b2fbe; font-weight: 700; font-size: 0.82rem;
+      padding: 6px 16px; border-radius: 20px; border: 1.5px solid #c9a0f0;
+    }
+
+    /* Links Hub */
+    #links { background: #fff; }
+    #links .section-title { color: #e040c8; }
+    .links-subtitle { text-align: center; color: #6a5a7a; font-size: 1.05rem; margin-top: -28px; margin-bottom: 40px; }
+    .links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+
+    .link-card {
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+      padding: 32px 20px 28px; border-radius: 20px; text-decoration: none;
+      color: inherit; border: 2px solid transparent;
+      transition: transform 0.22s, box-shadow 0.22s;
+    }
+    .link-card:hover { transform: translateY(-5px); }
+
+    .card-etsy     { background: #fff8f0; border-color: #f1641e; }
+    .card-etsy     .card-icon-wrap { background: #f1641e; }
+    .card-etsy:hover { box-shadow: 0 12px 36px rgba(241,100,30,0.18); }
+
+    .card-patriotic { background: #f0f3fa; border-color: #1a2a4a; }
+    .card-patriotic .card-icon-wrap { background: linear-gradient(135deg, #1a2a4a 0%, #c0392b 100%); }
+    .card-patriotic:hover { border-color: #c0392b; box-shadow: 0 12px 36px rgba(192,57,43,0.18); }
+
+    .card-summer   { background: #f0faf9; border-color: #00a99d; }
+    .card-summer   .card-icon-wrap { background: linear-gradient(135deg, #00a99d 0%, #e8457a 100%); }
+    .card-summer:hover { border-color: #e8457a; box-shadow: 0 12px 36px rgba(0,169,157,0.20); }
+
+    .card-vfw      { background: #fff8f0; border-color: #b8860b; }
+    .card-vfw      .card-icon-wrap { background: linear-gradient(135deg, #b8860b 0%, #1a2a4a 100%); }
+    .card-vfw:hover { border-color: #b8860b; box-shadow: 0 12px 36px rgba(184,134,11,0.18); }
+
+    .card-blog     { background: #f0fff8; border-color: #00aa77; }
+    .card-blog     .card-icon-wrap { background: #00aa77; }
+    .card-blog:hover { box-shadow: 0 12px 36px rgba(0,170,119,0.18); }
+
+    .card-instagram { background: #fff0f8; border-color: #e040c8; }
+    .card-instagram .card-icon-wrap { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    .card-instagram:hover { box-shadow: 0 12px 36px rgba(224,64,200,0.18); }
+
+    .card-pinterest { background: #fff0f0; border-color: #e60023; }
+    .card-pinterest .card-icon-wrap { background: #e60023; }
+    .card-pinterest:hover { box-shadow: 0 12px 36px rgba(230,0,35,0.18); }
+
+    .card-facebook { background: #f0f4ff; border-color: #1877f2; }
+    .card-facebook .card-icon-wrap { background: #1877f2; }
+    .card-facebook:hover { box-shadow: 0 12px 36px rgba(24,119,242,0.18); }
+
+    .card-icon-wrap {
+      width: 64px; height: 64px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px; font-size: 1.7rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15); flex-shrink: 0;
+    }
+    .card-badge {
+      display: inline-block; font-size: 0.72rem; font-weight: 800;
+      padding: 3px 10px; border-radius: 12px; text-transform: uppercase;
+      letter-spacing: 0.06em; margin-bottom: 10px; color: #fff;
+    }
+    .badge-red    { background: #c0392b; }
+    .badge-teal   { background: #00a99d; }
+    .badge-gold   { background: #b8860b; }
+
+    .link-card h3 { font-weight: 800; font-size: 1.05rem; margin-bottom: 8px; color: #3a2a4a; }
+    .link-card p  { font-size: 0.88rem; color: #6a5a7a; line-height: 1.5; flex: 1; margin-bottom: 16px; }
+    .card-cta {
+      font-weight: 700; font-size: 0.85rem; padding: 8px 20px;
+      border-radius: 20px; color: #fff; background: rgba(0,0,0,0.15);
+      transition: background 0.2s;
+    }
+    .link-card:hover .card-cta { background: rgba(0,0,0,0.22); }
+    .placeholder-note { text-align: center; margin-top: 32px; font-size: 0.85rem; color: #9a8aaa; font-style: italic; }
+
+    /* Stats */
+    .stats-bar {
+      background: linear-gradient(135deg, #9b1fcc 0%, #7b2fbe 50%, #00b8cc 100%);
+      padding: 40px 20px;
+    }
+    .stats-inner { max-width: 860px; margin: 0 auto; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 24px; }
+    .stat-item { text-align: center; color: #fff; }
+    .stat-num { font-family: 'Pacifico', cursive; font-size: 2.4rem; color: #ffcc00; display: block; line-height: 1; margin-bottom: 4px; }
+    .stat-label { font-size: 0.9rem; font-weight: 600; opacity: 0.9; letter-spacing: 0.04em; }
+
+    /* Footer */
+    footer { background: #2a1a3a; color: rgba(255,255,255,0.75); text-align: center; padding: 36px 20px; }
+    footer .footer-brand { font-family: 'Pacifico', cursive; font-size: 1.5rem; color: #ff66cc; margin-bottom: 10px; }
+    footer p { font-size: 0.88rem; line-height: 1.8; }
+    footer a { color: #cc99ff; text-decoration: none; font-weight: 600; }
+    footer a:hover { color: #ff66cc; }
+    .footer-rainbow { height: 5px; background: linear-gradient(to right, #ff0040, #ff6600, #ffcc00, #33cc33, #00aaff, #6633cc, #ff33cc); }
+
+    @media (max-width: 680px) {
+      nav { padding: 12px 18px; }
+      .nav-links { gap: 14px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-art { order: -1; }
+      .about-wreath-graphic { width: 160px; height: 160px; }
+      .hero::before, .hero::after { width: 30px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="rainbow-bar"></div>
+
+  <nav>
+    <a href="#" class="nav-brand">ScrapNSewMom</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#links">Shop & More</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-logo-ring">
+        <div class="hero-logo-inner">
+          <span>SCRAP<br>N SEW<br>MOM</span>
+        </div>
+      </div>
+      <h1>Wreaths by ScrapNSewMom</h1>
+      <p class="hero-sub">✂️ Wreaths &amp; Home Decor B�w Winslow, Maine</p>
+      <p class="hero-tagline">Helping homeowners, busy moms, and thoughtful gift-givers transform their spaces into beautiful, welcoming homes — One handcrafted wreath at a time.</p>
+      <a href="#links" class="hero-btn">Explore Everything ↓</a>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-item"><span class="stat-num">274+,/span><span class="stat-label">Happy Customers</span></div>
+      <div class="stat-item"><span class="stat-num">11</span><span class="stat-label">Years on Etsy</span></div>
+      <div class="stat-item"><span class="stat-num">5.0 ⭐</span><span class="stat-label">Star Rating</span></div>
+      <div class="stat-item"><span class="stat-num">85+</span><span class="stat-label">Items in Shop</span></div>
+    </div>
+  </div>
+
+  <!-- About -->
+  <section id="about">
+    <div class="section-inner">
+      <h2 class="section-title">About Amy</h2>
+      <div class="section-divider"></div>
+      <div class="about-grid">
+        <div class="about-art">
+          <div class="about-wreath-graphic">
+            <div class="about-wreath-badge">One Crafty Momma 💕</div>
+          </div>
+        </div>
+        <div class="about-text">
+          <h3>Hi, I'm Amy Harrington!</h3>
+          <p>Welcome to ScrapNSewMom — your go-to destination for handcrafted wreaths and home decor made with love right here in Winslow, Maine. I'm a crafty momma who turns fabric scraps, ribbon, and creativity into pieces that make your front door and home feel warm and inviting.</p>
+          <p>Whether you're looking for a seasonal wreath, a thoughtful handmade gift, or something uniquely beautiful for your home, I pour heart into every single piece I make. No two are exactly alike — just like the homes they decorate.</p>
+          <p>From Valentine's Day to the holidays and everything in between, there's always something new blooming in the workshop!</p>
+          <div class="about-badges">
+            <span class="badge">🌿 Handcrafted</span>
+            <span class="badge">🎀 Every Season</span>
+            <span class="badge">📦 Ships Nationwide</span>
+            <span class="badge">🏠 Winslow, Maine</span>
+            <span class="badge">✂️ Custom Orders</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Links Hub -->
+  <section id="links">
+    <div class="section-inner">
+      <h2 class="section-title">Find Me Everywhere</h2>
+      <div class="section-divider"></div>
+      <p class="links-subtitle">Shop, learn, register for classes, and connect — all in one place.</p>
+
+      <div class="links-grid">
+
+        <!-- Etsy Shop -->
+        <a href="https://www.etsy.com/shop/scrapnsewmom" target="_blank" class="link-card card-etsy">
+          <div class="card-icon-wrap">🛍️</div>
+          <h3>Etsy Shop</h3>
+          <p>Browse and shop handcrafted wreaths and home decor — ready to ship right to your door.</p>
+          <span class="card-cta">Shop Now →</span>
+        </a>
+
+        <!-- Patriotic Wreath Class -->
+        <a href="patriotic-wreath-registration.html" class="link-card card-patriotic">
+          <div class="card-icon-wrap">🇺🇸</div>
+          <span class="card-badge badge-red">Now Enrolling</span>
+          <h3>Patriotic Wreath Class</h3>
+          <p>Make your own stunning red, white &amp; blue wreath! Classes Apr 25, 26 &amp; 28 · $50 per person.</p>
+          <span class="card-cta">Register Now →</span>
+        </a>
+
+        <!-- Summer Wreath Class -->
+        <a href="summer-wreath-registration.html" class="link-card card-summer">
+          <div class="card-icon-wrap">🌻</div>
+          <span class="card-badge badge-teal">Now Enrolling</span>
+          <h3>Summer Wreath Class</h3>
+          <p>All Things Summer — 24" deco mesh wreath. June 6th or 7th, 11am–2pm · $50+ per person.</p>
+          <span class="card-cta">Register Now →</span>
+        </a>
+
+        <!-- VFW Wreath Classes -->
+        <a href="#" class="link-card card-vfw" data-placeholder="true">
+          <div class="card-icon-wrap">🎖️</div>
+          <span class="card-badge badge-gold">Coming Soon</span>
+          <h3>VFW Wreath Classes</h3>
+          <p>Special wreath-making classes hosted at the VFW. Details and registration coming soon — stay tuned!</p>
+          <span class="card-cta">Learn More →</span>
+        </a>
+
+        <!-- Blog -->
+        <a href="#" class="link-card card-blog" data-placeholder="true">
+          <div class="card-icon-wrap">✍️</div>
+          <h3>Blog</h3>
+          <p>Tips, tutorials, behind-the-scenes crafting stories, and inspiration for your home.</p>
+          <span class="card-cta">Read More →</span>
+        </a>
+
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/scrapnsewmom" target="_blank" class="link-card card-instagram">
+          <div class="card-icon-wrap">📸</div>
+          <h3>Instagram</h3>
+          <p>Follow along for daily crafting peeks, new wreath reveals, and behind-the-scenes fun.</p>
+          <span class="card-cta">Follow →</span>
+        </a>
+
+        <!-- Pinterest -->
+        <a href="https://www.pinterest.com/scrapnsewmom" target="_blank" class="link-card card-pinterest">
+          <div class="card-icon-wrap">📌</div>
+          <h3>Pinterest</h3>
+          <p>361K+ monthly views! Find wreath inspiration, home decor ideas, and crafting tutorials.</p>
+          <span class="card-cta">See Pins →</span>
+        </a>
+
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/scrapnsewmom" target="_blank" class="link-card card-facebook">
+          <div class="card-icon-wrap">💬</div>
+          <h3>Facebook</h3>
+          <p>Join the ScrapNSewMom community — sales, sneak peeks, giveaways, and more.</p>
+          <span class="card-cta">Join Us →</span>
+        </a>
+
+      </div>
+
+      <p class="placeholder-note">🔗 Cards without live links are placeholders — swap in your URL when you're ready!</p>
+    </div>
+  </section>
+
+  <div class="footer-rainbow"></div>
+  <footer>
+    <div class="footer-brand">ScrapNSewMom</div>
+    <p>
+      Handcrafted Wreaths &amp; Home Decor B� Winslow, Maine<br/>
+      <a href="https://www.etsy.com/shop/scrapnsewmom" target="_blank">Etsy Shop</a> ·
+      <a href="https://www.instagram.com/scrapnsewmom" target="_blank">Instagram</a> ·
+      <a href="https://www.pinterest.com/scrapnsewmom" target="_blank">Pinterest</a> ·
+      <a href="https://www.facebook.com/scrapnsewmom" target="_blank">Facebook</a>
+    </p>
+    <p style="margin-top:14px; font-size:0.78rem; opacity:0.5;">© 2026 ScrapNSewMom – Amy Harrington. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
