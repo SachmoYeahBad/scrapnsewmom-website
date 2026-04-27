@@ -531,8 +531,8 @@
                 <div class="payment-note">Send payment via PayPal to <strong>@ScrapNSewMom</strong> — include your name in the note. <em>No fee.</em></div>
               </div>
               <div class="payment-option" onclick="selectPayment(this, 'credit')">
-                <input type="radio" name="payment" value="credit" /> <label>Credit Card via Square <span class="cc-badge">+$3 fee</span></label>
-                <div class="payment-note">You'll receive a secure Square payment link after registering. A $3 handling fee is added to your total.</div>
+                <input type="radio" name="payment" value="credit" /> <label>Credit Card via Stripe <span class="cc-badge">+$3 fee</span></label>
+                <div class="payment-note">You'll be taken to a secure Stripe payment page. A $3 handling fee is added to your total.</div>
               </div>
             </div>
 
@@ -654,7 +654,7 @@
     const cfg = {
       venmo:       'ScrapNSewMom',
       paypalEmail: 'scrapnsewmom@gmail.com',
-      square:      'your-square-link',
+      stripe:      'https://buy.stripe.com/cNiaEY2ve5ei1RU2fp8Vi00',
       emailTo:     'bharring64@gmail.com',
       sheetsUrl:   'https://script.google.com/macros/s/AKfycbwLMqwLn3Kl1vK596rbD4DXNet3b7oowZI6IfQOr6XM-hivMw8e1zLP2cDAEcvK3Ujq/exec',
     };
@@ -746,7 +746,7 @@
       else if (selectedPayment === 'paypal')
         paymentUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${encodeURIComponent(cfg.paypalEmail)}&amount=${total}&currency_code=USD&item_name=${note}`;
       else
-        paymentUrl = `https://square.link/${cfg.square}`;
+        paymentUrl = cfg.stripe;
 
       window.open(paymentUrl, '_blank');
       document.getElementById('proceed-section').style.display = 'none';
