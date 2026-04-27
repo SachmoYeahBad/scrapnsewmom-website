@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vassalboro 8th Grade Hoodies 2026 – Order Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #1a2a4a;
+      --red:    #8b1a1a;
+      --cream:  #fdf6ec;
+      --gold:   #c9a84c;
+      --light:  #f4f0e8;
+      --border: #d6cfc3;
+      --text:   #2c2c2c;
+      --muted:  #6b6560;
+      --green:  #2d6a4f;
+    }
+
+    body { font-family: 'Lato', sans-serif; background: var(--cream); color: var(--text); min-height: 100vh; }
+
+    /* ── Header ── */
+    .site-header { background: var(--navy); color: #fff; text-align: center; padding: 12px 20px; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
+    .site-header a { color: var(--gold); text-decoration: none; }
+
+    /* ── Hero ── */
+    .hero { background: linear-gradient(135deg, var(--navy) 0%, #2c3e6b 60%, #5a1a1a 100%); color: #fff; text-align: center; padding: 52px 20px 40px; }
+    .hero::before { content: '🦅  ·  CLASS OF 2026  ·  🦅'; display: block; font-size: 14px; letter-spacing: 6px; margin-bottom: 18px; opacity: .65; text-transform: uppercase; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 5vw, 46px); margin-bottom: 10px; text-shadow: 0 2px 12px rgba(0,0,0,.3); }
+    .hero p { font-size: 16px; opacity: .88; max-width: 540px; margin: 0 auto; line-height: 1.6; }
+
+    /* ── Deadline strip ── */
+    .deadline-strip { background: var(--red); color: #fff; text-align: center; padding: 11px 20px; font-size: 14px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+    .deadline-strip span { color: var(--gold); }
+
+    /* ── Layout ── */
+    .page-wrap { max-width: 1080px; margin: 0 auto; padding: 36px 20px 70px; display: grid; grid-template-columns: 1fr 320px; gap: 32px; }
+    @media (max-width: 820px) { .page-wrap { grid-template-columns: 1fr; } .sidebar { order: -1; } }
+
+    /* ── Section headers ── */
+    .section-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--navy); margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid var(--gold); display: flex; align-items: center; gap: 10px; }
+    .section-num { background: var(--navy); color: #fff; width: 28px; height: 28px; border-radius: 50%; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+    /* ── Cards ── */
+    .card { background: #fff; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,.07); padding: 28px; margin-bottom: 24px; }
+
+    /* ── Logo grid ── */
+    .logo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; }
+    .logo-option { border: 2px solid var(--border); border-radius: 10px; padding: 10px 8px 10px; text-align: center; cursor: pointer; transition: border-color .2s, background .2s, transform .15s; position: relative; background: #f7f5f0; }
+    .logo-option:hover { border-color: var(--navy); background: #f0f3f9; transform: translateY(-2px); }
+    .logo-option.selected { border-color: var(--navy); background: #eef1f7; }
+    .logo-option.selected::after { content: '✓'; position: absolute; top: 6px; right: 8px; font-size: 13px; font-weight: 700; color: var(--navy); }
+    .logo-option input[type="radio"] { display: none; }
+    .logo-img { width: 100%; max-width: 110px; height: 54px; object-fit: contain; display: block; margin: 0 auto 6px; }
+    .logo-name { font-size: 11px; font-weight: 700; color: var(--navy); line-height: 1.3; }
+
+    /* ── Size grid ── */
+    .size-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    @media (max-width: 520px) { .size-grid { grid-template-columns: repeat(2, 1fr); } }
+    .size-btn { border: 2px solid var(--border); border-radius: 10px; padding: 12px 10px; text-align: center; cursor: pointer; transition: border-color .2s, background .2s; position: relative; }
+    .size-btn:hover { border-color: var(--navy); background: #f0f3f9; }
+    .size-btn.selected { border-color: var(--navy); background: var(--navy); color: #fff; }
+    .size-btn input[type="radio"] { display: none; }
+    .size-label { font-size: 14px; font-weight: 700; display: block; }
+    .size-price { font-size: 12px; margin-top: 2px; opacity: .8; }
+    .size-btn.selected .size-price { opacity: 1; color: var(--gold); }
+
+    /* ── Personalization ── */
+    .pz-option { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 8px; cursor: pointer; margin-bottom: 8px; transition: border-color .2s, background .2s; font-size: 14px; }
+    .pz-option:hover { border-color: var(--navy); background: #f8f6f2; }
+    .pz-option.selected { border-color: var(--navy); background: #eef1f7; }
+    .pz-option input[type="checkbox"] { margin-top: 2px; accent-color: var(--navy); flex-shrink: 0; }
+    .pz-text { flex: 1; }
+    .pz-title { font-weight: 700; display: block; }
+    .pz-sub { font-size: 12px; color: var(--muted); display: block; margin-top: 1px; }
+    .pz-add { font-weight: 700; color: var(--green); white-space: nowrap; margin-left: auto; font-size: 13px; }
+    .pz-name-inline { display: none; margin-top: 8px; padding: 10px 12px; background: var(--light); border-radius: 7px; border: 1.5px solid var(--border); }
+    .pz-name-inline.visible { display: block; }
+    .pz-name-inline label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--navy); display: block; margin-bottom: 4px; }
+    .pz-name-inline input { width: 100%; padding: 7px 10px; border: 1.5px solid var(--border); border-radius: 6px; font-family: 'Lato', sans-serif; font-size: 14px; outline: none; background: #fff; }
+    .pz-name-inline input:focus { border-color: var(--navy); }
+    .pz-name-inline input.input-error { border-color: var(--red); }
+
+    /* ── Add to cart button ── */
+    .btn-add-cart { width: 100%; padding: 14px; background: var(--gold); color: var(--navy); border: none; border-radius: 10px; font-family: 'Lato', sans-serif; font-size: 16px; font-weight: 700; cursor: pointer; letter-spacing: .3px; transition: background .2s, transform .1s; margin-top: 8px; }
+    .btn-add-cart:hover { background: #b8961e; transform: translateY(-1px); }
+    .btn-add-cart:active { transform: translateY(0); }
+
+    /* ── Cart ── */
+    .cart-empty { text-align: center; padding: 32px 20px; color: var(--muted); font-style: italic; font-size: 14px; }
+    .cart-empty .cart-empty-icon { font-size: 36px; margin-bottom: 10px; }
+
+    .cart-item { border: 1.5px solid var(--border); border-radius: 10px; padding: 14px 16px; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 14px; background: #fff; }
+    .cart-item-num { background: var(--navy); color: #fff; width: 24px; height: 24px; border-radius: 50%; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .cart-item-body { flex: 1; }
+    .cart-item-title { font-weight: 700; font-size: 15px; color: var(--navy); }
+    .cart-item-detail { font-size: 13px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
+    .cart-item-price { font-weight: 700; font-size: 15px; color: var(--navy); white-space: nowrap; }
+    .btn-remove { background: none; border: none; cursor: pointer; font-size: 16px; color: var(--muted); transition: color .2s; padding: 0 4px; margin-top: 1px; flex-shrink: 0; }
+    .btn-remove:hover { color: var(--red); }
+
+    /* ── Contact fields ── */
+    .field-group { margin-bottom: 18px; }
+    .field-group label { display: block; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; color: var(--navy); }
+    .field-group label .req { color: var(--red); margin-left: 2px; }
+    .field-group input { width: 100%; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-family: 'Lato', sans-serif; font-size: 15px; color: var(--text); background: #fff; transition: border-color .2s; outline: none; }
+    .field-group input:focus { border-color: var(--navy); }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 520px) { .field-row { grid-template-columns: 1fr; } }
+
+    /* ── Payment ── */
+    .payment-option { border: 2px solid var(--border); border-radius: 10px; padding: 14px 16px; cursor: pointer; margin-bottom: 10px; transition: border-color .2s, background .2s; display: flex; align-items: flex-start; gap: 12px; }
+    .payment-option:hover { border-color: var(--navy); background: #f8f6f2; }
+    .payment-option.selected { border-color: var(--navy); background: #eef1f7; }
+    .payment-option input[type="radio"] { margin-top: 3px; accent-color: var(--navy); flex-shrink: 0; }
+    .pay-title { font-weight: 700; display: block; font-size: 15px; }
+    .pay-detail { font-size: 13px; color: var(--muted); display: block; margin-top: 3px; line-height: 1.5; }
+    .cc-badge { background: var(--gold); color: #5a3e00; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 12px; margin-left: 8px; vertical-align: middle; white-space: nowrap; }
+
+    /* ── Validation ── */
+    .field-error { color: var(--red); font-size: 12px; margin-top: 4px; display: none; }
+    .field-group.has-error input { border-color: var(--red); }
+    .field-group.has-error .field-error { display: block; }
+    .section-error { background: #fff0f0; border: 1.5px solid var(--red); border-radius: 8px; padding: 10px 14px; font-size: 13px; color: var(--red); margin-bottom: 12px; display: none; }
+
+    /* ── Submit ── */
+    .btn-submit { width: 100%; padding: 16px; background: var(--navy); color: #fff; border: none; border-radius: 10px; font-family: 'Lato', sans-serif; font-size: 17px; font-weight: 700; cursor: pointer; letter-spacing: .5px; transition: background .2s, transform .1s; margin-top: 8px; }
+    .btn-submit:hover { background: #253a6a; transform: translateY(-1px); }
+    .btn-submit:active { transform: translateY(0); }
+    .btn-submit:disabled { background: #999; cursor: not-allowed; transform: none; }
+    .form-note { font-size: 13px; color: var(--muted); text-align: center; margin-top: 10px; line-height: 1.5; }
+
+    /* ── Sidebar ── */
+    .product-img { width: 100%; border-radius: 12px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 4px 16px rgba(0,0,0,.1); background: #e8e0f0; min-height: 180px; display: flex; align-items: center; justify-content: center; }
+    .product-img img { width: 100%; display: block; border-radius: 12px; }
+    .product-img .img-placeholder { padding: 36px 20px; text-align: center; color: var(--muted); font-size: 14px; }
+    .product-img .img-placeholder .icon { font-size: 40px; margin-bottom: 10px; }
+
+    .summary-card { background: #fff; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,.07); overflow: hidden; position: sticky; top: 16px; }
+    .summary-header { background: var(--navy); color: #fff; padding: 16px 20px; font-family: 'Playfair Display', serif; font-size: 18px; display: flex; justify-content: space-between; align-items: center; }
+    .summary-badge { background: var(--gold); color: #5a3e00; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 20px; font-family: 'Lato', sans-serif; }
+    .summary-body { padding: 18px 20px; }
+    .summary-row { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 8px; color: var(--muted); }
+    .summary-row.filled { color: var(--text); }
+    .summary-row.cc-fee { color: var(--red); font-style: italic; }
+    .summary-divider { border: none; border-top: 1.5px solid var(--border); margin: 12px 0; }
+    .summary-total { display: flex; justify-content: space-between; font-size: 18px; font-weight: 700; color: var(--navy); }
+    .summary-empty { font-size: 13px; color: var(--muted); font-style: italic; text-align: center; padding: 8px 0 4px; }
+
+    /* ── Shared screen styles ── */
+    .screen { display: none; text-align: center; padding: 44px 20px; }
+    .screen .screen-icon { font-size: 52px; margin-bottom: 16px; }
+    .screen h2 { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--navy); margin-bottom: 10px; }
+    .screen p { font-size: 15px; color: var(--muted); max-width: 480px; margin: 0 auto 20px; line-height: 1.7; }
+    .conf-summary { background: var(--light); border: 1.5px solid var(--border); border-radius: 10px; padding: 20px 24px; max-width: 460px; margin: 0 auto 20px; text-align: left; }
+    .conf-summary h4 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--navy); margin-bottom: 12px; }
+    .conf-item { border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 10px; }
+    .conf-item:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .conf-item-title { font-weight: 700; font-size: 14px; color: var(--navy); }
+    .conf-item-detail { font-size: 13px; color: var(--muted); margin-top: 2px; }
+    .conf-row { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 6px; }
+    .conf-row.total { font-weight: 700; font-size: 16px; border-top: 1.5px solid var(--border); padding-top: 10px; margin-top: 6px; color: var(--navy); }
+    .btn-back { background: none; border: 2px solid var(--navy); color: var(--navy); padding: 11px 28px; border-radius: 8px; font-family: 'Lato', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; transition: background .2s, color .2s; }
+    .btn-back:hover { background: var(--navy); color: #fff; }
+
+    /* ── Payment pending screen ── */
+    .btn-pay-now { display: inline-block; padding: 15px 36px; border-radius: 10px; font-family: 'Lato', sans-serif; font-size: 17px; font-weight: 700; text-decoration: none; cursor: pointer; border: none; transition: opacity .2s, transform .1s; }
+    .btn-pay-now:hover { opacity: .88; transform: translateY(-1px); }
+
+    .divider-or { display: flex; align-items: center; gap: 12px; max-width: 460px; margin: 20px auto; color: var(--muted); font-size: 13px; }
+    .divider-or::before, .divider-or::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    .btn-confirm-paid { width: 100%; max-width: 460px; padding: 15px; border-radius: 10px; font-family: 'Lato', sans-serif; font-size: 17px; font-weight: 700; border: 2px solid var(--border); background: #fff; color: var(--muted); cursor: not-allowed; transition: all .2s; }
+    .btn-confirm-paid.ready { background: #2d6a4f; border-color: #2d6a4f; color: #fff; cursor: pointer; }
+    .btn-confirm-paid.ready:hover { background: #235540; transform: translateY(-1px); }
+    .pay-hint { font-size: 12px; color: var(--muted); margin-top: 8px; max-width: 460px; margin-left: auto; margin-right: auto; }
+
+    /* ── Footer ── */
+    .site-footer { background: var(--navy); color: rgba(255,255,255,.6); text-align: center; padding: 22px 20px; font-size: 13px; letter-spacing: .5px; }
+    .site-footer a { color: var(--gold); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<div class="site-header">
+  <a href="index.html">← ScrapNSewMom Home</a>
+</div>
+
+<div class="hero">
+  <h1>Vassalboro 8th Grade Hoodies</h1>
+  <p>100% Cotton Preshrunk Gildan Hoodies — Your choice of school logo, size, and optional personalization.</p>
+</div>
+
+<div class="deadline-strip">
+  ⏰ &nbsp;Orders due by <span>May 15, 2026</span> &nbsp;·&nbsp; Questions? Contact Amy Harrington
+</div>
+
+<div class="page-wrap">
+
+  <!-- LEFT: Form -->
+  <main>
+
+    <!-- Screen 1: Payment pending (shown after submit) -->
+    <div class="screen" id="screenPayment">
+      <div class="screen-icon">🛍️</div>
+      <h2>Almost Done!</h2>
+      <p>Your order has been saved. Complete your payment below, then click <strong>I've Completed My Payment</strong> to finish.</p>
+      <div class="conf-summary" id="paymentOrderSummary"></div>
+      <div id="payBtnWrap"></div>
+      <div class="divider-or">then</div>
+      <button class="btn-confirm-paid" id="btnConfirmPaid" disabled onclick="confirmPayment()">
+        ✓ &nbsp;I've Completed My Payment
+      </button>
+      <p class="pay-hint" id="payHint">Complete your payment above first, then this button will activate.</p>
+    </div>
+
+    <!-- Screen 2: Final confirmation (shown after confirm payment) -->
+    <div class="screen" id="screenConfirm">
+      <div class="screen-icon">🎉</div>
+      <h2>Order Complete!</h2>
+      <p>Thanks, <strong id="conf-name"></strong>! Your payment is confirmed and your order is on its way to Amy. You're all set!</p>
+      <div class="conf-summary" id="conf-summary"></div>
+      <br>
+      <button class="btn-back" onclick="resetForm()">Place Another Order</button>
+    </div>
+
+    <!-- Order Form -->
+    <form id="orderForm" novalidate>
+
+      <!-- ═══ STEP 1: BUILD A HOODIE ═══ -->
+      <div class="card" id="builderCard">
+        <div class="section-title">
+          <div class="section-num">1</div>
+          Build a Hoodie
+        </div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:20px;">Configure each hoodie and click <strong>Add to Cart</strong>. Repeat for additional hoodies.</p>
+
+        <!-- Logo -->
+        <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--navy);margin-bottom:10px;">School Logo <span style="color:var(--red)">*</span></p>
+        <div class="section-error" id="err-logo">Please select a school logo.</div>
+        <div class="logo-grid" id="logoGrid">
+
+          <label class="logo-option" onclick="selectLogo(this)">
+            <input type="radio" name="logo" value="Cony Rams" />
+            <img class="logo-img" src="logo-cony.jpg" alt="Cony Rams" />
+            <div class="logo-name">Cony Rams</div>
+          </label>
+
+          <label class="logo-option" onclick="selectLogo(this)">
+            <input type="radio" name="logo" value="Erskine Eagles" />
+            <img class="logo-img" src="logo-erskine.jpg" alt="Erskine Eagles" />
+            <div class="logo-name">Erskine Eagles</div>
+          </label>
+
+          <label class="logo-option" onclick="selectLogo(this)">
+            <input type="radio" name="logo" value="Lawrence Bulldogs" />
+            <img class="logo-img" src="logo-lawrence.jpg" alt="Lawrence Bulldogs" />
+            <div class="logo-name">Lawrence Bulldogs</div>
+          </label>
+
+          <label class="logo-option" onclick="selectLogo(this)">
+            <input type="radio" name="logo" value="Maine School of Science &amp; Math Penguins" />
+            <img class="logo-img" src="logo-mssm.jpg" alt="Maine School of Science &amp; Math Penguins" />
+            <div class="logo-name">MSSM Penguins</div>
+          </label>
+
+          <label class="logo-option" onclick="selectLogo(this)">
+            <input type="radio" name="logo" value="Messalonskee Eagles" />
+            <img class="logo-img" src="logo-messalonskee.jpg" alt="Messalonskee Eagles" />
+            <div class="logo-name">Messalonskee Eagles</div>
+          </label>
+
+          <label class="logo-option" onclick="selectLogo(this)">
+            <input type="radio" name="logo" value="Waterville Panthers" />
+            <img class="logo-img" src="logo-waterville.jpg" alt="Waterville Panthers" />
+            <div class="logo-name">Waterville Panthers</div>
+          </label>
+
+          <label class="logo-option" onclick="selectLogo(this)">
+            <input type="radio" name="logo" value="Winslow Black Raiders" />
+            <img class="logo-img" src="logo-winslow.jpg" alt="Winslow Black Raiders" />
+            <div class="logo-name">Winslow Black Raiders</div>
+          </label>
+
+        </div>
+
+        <!-- Size -->
+        <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--navy);margin:20px 0 10px;">Size <span style="color:var(--red)">*</span></p>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:10px;">Gildan 100% Cotton Unisex — Sport Gray / Ash Gray</p>
+        <div class="section-error" id="err-size">Please select a size.</div>
+        <div class="size-grid">
+
+          <label class="size-btn" onclick="selectSize(this, 30)">
+            <input type="radio" name="size" value="Adult S" data-price="30" />
+            <span class="size-label">Adult S</span>
+            <span class="size-price">$30.00</span>
+          </label>
+
+          <label class="size-btn" onclick="selectSize(this, 30)">
+            <input type="radio" name="size" value="Adult M" data-price="30" />
+            <span class="size-label">Adult M</span>
+            <span class="size-price">$30.00</span>
+          </label>
+
+          <label class="size-btn" onclick="selectSize(this, 30)">
+            <input type="radio" name="size" value="Adult L" data-price="30" />
+            <span class="size-label">Adult L</span>
+            <span class="size-price">$30.00</span>
+          </label>
+
+          <label class="size-btn" onclick="selectSize(this, 30)">
+            <input type="radio" name="size" value="Adult XL" data-price="30" />
+            <span class="size-label">Adult XL</span>
+            <span class="size-price">$30.00</span>
+          </label>
+
+          <label class="size-btn" onclick="selectSize(this, 33)">
+            <input type="radio" name="size" value="Adult 2X" data-price="33" />
+            <span class="size-label">Adult 2X</span>
+            <span class="size-price">$33.00</span>
+          </label>
+
+          <label class="size-btn" onclick="selectSize(this, 40)">
+            <input type="radio" name="size" value="Adult 3X" data-price="40" />
+            <span class="size-label">Adult 3X</span>
+            <span class="size-price">$40.00</span>
+          </label>
+
+        </div>
+
+        <!-- Personalization -->
+        <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--navy);margin:20px 0 6px;">Personalization <span style="font-weight:400;color:var(--muted)">(Optional)</span></p>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:10px;">Add a custom name to this hoodie. Select all that apply.</p>
+        <img src="logoplacement.png" alt="Personalization placement diagram" style="display:block;width:100%;max-width:420px;margin:0 auto 14px;border-radius:8px;border:1.5px solid var(--border);" />
+
+        <div class="pz-option-wrap">
+          <label class="pz-option" onclick="togglePz(this, 'pz-name-back')">
+            <input type="checkbox" name="pz" value="Block Name on Back" data-add="5" />
+            <div class="pz-text">
+              <span class="pz-title">Block Name on Back</span>
+              <span class="pz-sub">Large text on the back</span>
+            </div>
+            <span class="pz-add">+$5</span>
+          </label>
+          <div class="pz-name-inline" id="pz-name-back">
+            <label>Name for back <span style="color:var(--red)">*</span></label>
+            <input type="text" placeholder="e.g. SMITH" />
+          </div>
+        </div>
+
+        <div class="pz-option-wrap">
+          <label class="pz-option" onclick="togglePz(this, 'pz-name-sleeve')">
+            <input type="checkbox" name="pz" value="Block Name on Sleeve (Big)" data-add="5" />
+            <div class="pz-text">
+              <span class="pz-title">Block Name on Sleeve (Big)</span>
+              <span class="pz-sub">Large text down the sleeve</span>
+            </div>
+            <span class="pz-add">+$5</span>
+          </label>
+          <div class="pz-name-inline" id="pz-name-sleeve">
+            <label>Name for sleeve <span style="color:var(--red)">*</span></label>
+            <input type="text" placeholder="e.g. SMITH" />
+          </div>
+        </div>
+
+        <div class="pz-option-wrap">
+          <label class="pz-option" onclick="togglePz(this, 'pz-name-shoulder')">
+            <input type="checkbox" name="pz" value="Block Name on Shoulder (Small)" data-add="3" />
+            <div class="pz-text">
+              <span class="pz-title">Block Name on Shoulder (Small)</span>
+              <span class="pz-sub">Small text on the bicep/shoulder</span>
+            </div>
+            <span class="pz-add">+$3</span>
+          </label>
+          <div class="pz-name-inline" id="pz-name-shoulder">
+            <label>Name for shoulder <span style="color:var(--red)">*</span></label>
+            <input type="text" placeholder="e.g. SMITH" />
+          </div>
+        </div>
+
+        <!-- Add to cart button -->
+        <button type="button" class="btn-add-cart" onclick="addToCart()">＋ Add to Cart</button>
+      </div>
+
+      <!-- ═══ STEP 2: CART ═══ -->
+      <div class="card">
+        <div class="section-title">
+          <div class="section-num">2</div>
+          Your Cart
+          <span id="cartCount" style="font-family:'Lato',sans-serif;font-size:13px;font-weight:700;color:var(--muted);margin-left:4px;"></span>
+        </div>
+        <div class="section-error" id="err-cart">Please add at least one hoodie to your cart.</div>
+        <div id="cartItems">
+          <div class="cart-empty">
+            <div class="cart-empty-icon">🛒</div>
+            <div>No hoodies added yet.<br>Configure one above and click <strong>Add to Cart</strong>.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ STEP 3: CONTACT INFO ═══ -->
+      <div class="card">
+        <div class="section-title">
+          <div class="section-num">3</div>
+          Your Contact Info
+        </div>
+
+        <div class="field-group" id="fg-name">
+          <label for="custName">Full Name <span class="req">*</span></label>
+          <input type="text" id="custName" name="custName" placeholder="Your name" />
+          <div class="field-error">Please enter your name.</div>
+        </div>
+
+        <div class="field-row">
+          <div class="field-group" id="fg-email">
+            <label for="custEmail">Email <span class="req">*</span></label>
+            <input type="email" id="custEmail" name="custEmail" placeholder="you@example.com" />
+            <div class="field-error">Please enter a valid email.</div>
+          </div>
+          <div class="field-group" id="fg-phone">
+            <label for="custPhone">Phone <span class="req">*</span></label>
+            <input type="tel" id="custPhone" name="custPhone" placeholder="(207) 555-0100" />
+            <div class="field-error">Please enter your phone number.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ STEP 4: PAYMENT ═══ -->
+      <div class="card">
+        <div class="section-title">
+          <div class="section-num">4</div>
+          Payment Method
+        </div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Choose how you'll send payment. Due by <strong>May 15, 2026</strong>.</p>
+        <div class="section-error" id="err-payment">Please select a payment method.</div>
+
+        <label class="payment-option" onclick="selectPayment(this, 'Venmo')">
+          <input type="radio" name="payment" value="Venmo" />
+          <div>
+            <span class="pay-title">💙 Venmo</span>
+            <span class="pay-detail">@ScrapNSewMom — include your name &amp; "Hoodie 2026" in the memo. <em>No fee.</em></span>
+          </div>
+        </label>
+
+        <label class="payment-option" onclick="selectPayment(this, 'PayPal')">
+          <input type="radio" name="payment" value="PayPal" />
+          <div>
+            <span class="pay-title">🅿️ PayPal</span>
+            <span class="pay-detail">@ScrapNSewMom — include your name in the note. <em>No fee.</em></span>
+          </div>
+        </label>
+
+        <label class="payment-option" onclick="selectPayment(this, 'Credit Card')">
+          <input type="radio" name="payment" value="Credit Card" />
+          <div>
+            <span class="pay-title">💳 Credit Card via Stripe <span class="cc-badge">+$3 fee</span></span>
+            <span class="pay-detail">Secure Stripe checkout after submitting. A $3 handling fee is added to your total.</span>
+          </div>
+        </label>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="btn-submit" id="submitBtn">Submit My Order →</button>
+      <p class="form-note">Questions? Reach out to Amy Harrington. Orders due May 15, 2026.</p>
+
+    </form>
+  </main>
+
+  <!-- RIGHT: Sidebar -->
+  <aside class="sidebar">
+
+
+    <!-- Order summary -->
+    <div class="summary-card">
+      <div class="summary-header">
+        Order Summary
+        <span class="summary-badge" id="summaryBadge" style="display:none;">0 items</span>
+      </div>
+      <div class="summary-body">
+        <div id="summaryItems">
+          <p class="summary-empty">Add hoodies to see your summary.</p>
+        </div>
+        <hr class="summary-divider" id="summaryDivider" style="display:none;" />
+        <div id="summaryFooter" style="display:none;">
+          <div class="summary-row" id="summarySubtotalRow" style="display:none;">
+            <span>Subtotal</span><span id="summarySubtotal">$0.00</span>
+          </div>
+          <div class="summary-row cc-fee" id="summaryCcRow" style="display:none;">
+            <span>Credit card fee</span><span>+$3.00</span>
+          </div>
+          <div class="summary-total">
+            <span>Total Due</span>
+            <span id="summaryTotal">$0.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+
+</div>
+
+<div class="site-footer">
+  <p>© 2026 ScrapNSewMom &nbsp;·&nbsp; <a href="index.html">Home</a></p>
+</div>
+
+<script>
+  // ── Config ──
+  const cfg = {
+    venmo:       'ScrapNSewMom',
+    paypalEmail: 'scrapnsewmom@gmail.com',
+    stripeUrl:   'https://buy.stripe.com/8x27sMedWayCcwyg6f8Vi02',
+    sheetsUrl:   'https://script.google.com/macros/s/AKfycbwLMqwLn3Kl1vK596rbD4DXNet3b7oowZI6IfQOr6XM-hivMw8e1zLP2cDAEcvK3Ujq/exec',
+    emailTo:     'bharring64@gmail.com',
+    ccFee:       3,
+  };
+
+  // ── State ──
+  const state = {
+    // Builder (current item being configured)
+    logo: '',
+    size: '',
+    sizePrice: 0,
+    personalizations: [],
+    pzTotal: 0,
+
+    // Cart
+    cart: [],          // array of item objects
+    nextId: 1,
+
+    // Checkout
+    payment: '',
+    ccFee: 0,
+    custName: '',
+    custEmail: '',
+    custPhone: '',
+  };
+
+  // ── Builder: Logo ──
+  function selectLogo(el) {
+    document.querySelectorAll('.logo-option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    el.querySelector('input').checked = true;
+    state.logo = el.querySelector('input').value;
+    document.getElementById('err-logo').style.display = 'none';
+  }
+
+  // ── Builder: Size ──
+  function selectSize(el, price) {
+    document.querySelectorAll('.size-btn').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    el.querySelector('input').checked = true;
+    state.size = el.querySelector('input').value;
+    state.sizePrice = price;
+    document.getElementById('err-size').style.display = 'none';
+  }
+
+  // ── Builder: Personalization ──
+  function togglePz(el, nameRowId) {
+    const cb = el.querySelector('input[type="checkbox"]');
+    setTimeout(() => {
+      el.classList.toggle('selected', cb.checked);
+      const nameRow = document.getElementById(nameRowId);
+      nameRow.classList.toggle('visible', cb.checked);
+      if (!cb.checked) {
+        nameRow.querySelector('input').value = '';
+        nameRow.querySelector('input').classList.remove('input-error');
+      }
+      const add = parseInt(cb.dataset.add, 10);
+      if (cb.checked) {
+        if (!state.personalizations.find(p => p.name === cb.value)) {
+          state.personalizations.push({ name: cb.value, add, nameRowId });
+        }
+      } else {
+        state.personalizations = state.personalizations.filter(p => p.name !== cb.value);
+      }
+      state.pzTotal = state.personalizations.reduce((s, p) => s + p.add, 0);
+    }, 0);
+  }
+
+  // ── Add to cart ──
+  function addToCart() {
+    let valid = true;
+
+    if (!state.logo) {
+      document.getElementById('err-logo').style.display = 'block';
+      valid = false;
+    }
+    if (!state.size) {
+      document.getElementById('err-size').style.display = 'block';
+      valid = false;
+    }
+
+    // Validate each personalization has a name
+    let pzValid = true;
+    state.personalizations.forEach(p => {
+      const input = document.getElementById(p.nameRowId).querySelector('input');
+      const val = input.value.trim();
+      if (!val) {
+        input.classList.add('input-error');
+        pzValid = false;
+      } else {
+        input.classList.remove('input-error');
+      }
+    });
+    if (!pzValid) valid = false;
+
+    if (!valid) {
+      const firstErr = document.querySelector('#builderCard .section-error[style*="block"]');
+      if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    // Collect each personalization with its individual name
+    const personalizations = state.personalizations.map(p => ({
+      name: p.name,
+      add: p.add,
+      pzName: document.getElementById(p.nameRowId).querySelector('input').value.trim(),
+    }));
+
+    const item = {
+      id: state.nextId++,
+      logo: state.logo,
+      size: state.size,
+      sizePrice: state.sizePrice,
+      personalizations,
+      pzTotal: state.pzTotal,
+      itemTotal: state.sizePrice + state.pzTotal,
+    };
+
+    state.cart.push(item);
+    document.getElementById('err-cart').style.display = 'none';
+    resetBuilder();
+    renderCart();
+    updateSummary();
+
+    // Scroll to cart
+    document.getElementById('cartItems').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  // ── Reset builder inputs ──
+  function resetBuilder() {
+    state.logo = '';
+    state.size = '';
+    state.sizePrice = 0;
+    state.personalizations = [];
+    state.pzTotal = 0;
+    document.querySelectorAll('.logo-option, .size-btn, .pz-option').forEach(el => el.classList.remove('selected'));
+    document.querySelectorAll('#logoGrid input, .size-btn input, .pz-option input').forEach(el => el.checked = false);
+    ['pz-name-back','pz-name-sleeve','pz-name-shoulder'].forEach(id => {
+      const row = document.getElementById(id);
+      row.classList.remove('visible');
+      row.querySelector('input').value = '';
+      row.querySelector('input').classList.remove('input-error');
+    });
+    document.getElementById('err-logo').style.display = 'none';
+    document.getElementById('err-size').style.display = 'none';
+  }
+
+  // ── Remove from cart ──
+  function removeFromCart(id) {
+    state.cart = state.cart.filter(item => item.id !== id);
+    renderCart();
+    updateSummary();
+  }
+
+  // ── Render cart ──
+  function renderCart() {
+    const container = document.getElementById('cartItems');
+    const count = state.cart.length;
+    document.getElementById('cartCount').textContent = count > 0 ? `(${count} item${count !== 1 ? 's' : ''})` : '';
+
+    if (count === 0) {
+      container.innerHTML = `
+        <div class="cart-empty">
+          <div class="cart-empty-icon">🛒</div>
+          <div>No hoodies added yet.<br>Configure one above and click <strong>Add to Cart</strong>.</div>
+        </div>`;
+      return;
+    }
+
+    container.innerHTML = state.cart.map((item, idx) => {
+      const pzLines = item.personalizations.length > 0
+        ? item.personalizations.map(p => `+ ${p.name}: <em>${p.pzName}</em> (+$${p.add})`).join('<br>')
+        : '';
+      return `
+        <div class="cart-item">
+          <div class="cart-item-num">${idx + 1}</div>
+          <div class="cart-item-body">
+            <div class="cart-item-title">${item.logo}</div>
+            <div class="cart-item-detail">
+              ${item.size} — $${item.sizePrice}.00
+              ${pzLines ? `<br>${pzLines}` : ''}
+            </div>
+          </div>
+          <div class="cart-item-price">$${item.itemTotal}.00</div>
+          <button class="btn-remove" type="button" onclick="removeFromCart(${item.id})" title="Remove">✕</button>
+        </div>`;
+    }).join('');
+  }
+
+  // ── Payment selection ──
+  function selectPayment(el, method) {
+    document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    el.querySelector('input').checked = true;
+    state.payment = method;
+    state.ccFee = (method === 'Credit Card') ? cfg.ccFee : 0;
+    document.getElementById('err-payment').style.display = 'none';
+    updateSummary();
+  }
+
+  // ── Update summary sidebar ──
+  function updateSummary() {
+    const summaryItems = document.getElementById('summaryItems');
+    const divider = document.getElementById('summaryDivider');
+    const footer = document.getElementById('summaryFooter');
+    const badge = document.getElementById('summaryBadge');
+    const subtotalRow = document.getElementById('summarySubtotalRow');
+    const ccRow = document.getElementById('summaryCcRow');
+    const totalEl = document.getElementById('summaryTotal');
+    const subtotalEl = document.getElementById('summarySubtotal');
+
+    const count = state.cart.length;
+    const subtotal = state.cart.reduce((s, item) => s + item.itemTotal, 0);
+    const total = subtotal + state.ccFee;
+
+    if (count === 0) {
+      summaryItems.innerHTML = '<p class="summary-empty">Add hoodies to see your summary.</p>';
+      divider.style.display = 'none';
+      footer.style.display = 'none';
+      badge.style.display = 'none';
+      return;
+    }
+
+    summaryItems.innerHTML = state.cart.map((item, idx) =>
+      `<div class="summary-row filled">
+        <span>${idx + 1}. ${item.logo} (${item.size})</span>
+        <span>$${item.itemTotal}.00</span>
+      </div>`
+    ).join('');
+
+    badge.textContent = `${count} item${count !== 1 ? 's' : ''}`;
+    badge.style.display = 'inline-block';
+    divider.style.display = 'block';
+    footer.style.display = 'block';
+
+    // Show subtotal row only when there are 2+ items or a CC fee
+    if (count > 1 || state.ccFee > 0) {
+      subtotalRow.style.display = 'flex';
+      subtotalEl.textContent = `$${subtotal}.00`;
+    } else {
+      subtotalRow.style.display = 'none';
+    }
+
+    ccRow.style.display = state.ccFee > 0 ? 'flex' : 'none';
+    totalEl.textContent = `$${total}.00`;
+  }
+
+  // ── Form submit ──
+  document.getElementById('orderForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    let valid = true;
+
+    // Cart must have items
+    if (state.cart.length === 0) {
+      document.getElementById('err-cart').style.display = 'block';
+      document.getElementById('cartItems').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      valid = false;
+    }
+
+    // Name
+    state.custName = document.getElementById('custName').value.trim();
+    if (!state.custName) { document.getElementById('fg-name').classList.add('has-error'); valid = false; }
+    else { document.getElementById('fg-name').classList.remove('has-error'); }
+
+    // Email
+    state.custEmail = document.getElementById('custEmail').value.trim();
+    if (!state.custEmail || !/\S+@\S+\.\S+/.test(state.custEmail)) { document.getElementById('fg-email').classList.add('has-error'); valid = false; }
+    else { document.getElementById('fg-email').classList.remove('has-error'); }
+
+    // Phone
+    state.custPhone = document.getElementById('custPhone').value.trim();
+    if (!state.custPhone) { document.getElementById('fg-phone').classList.add('has-error'); valid = false; }
+    else { document.getElementById('fg-phone').classList.remove('has-error'); }
+
+    // Payment
+    if (!state.payment) { document.getElementById('err-payment').style.display = 'block'; valid = false; }
+
+    if (!valid) {
+      const firstErr = document.querySelector('.has-error, .section-error[style*="block"]');
+      if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting…';
+
+    const subtotal = state.cart.reduce((s, item) => s + item.itemTotal, 0);
+    const total = subtotal + state.ccFee;
+
+    const payload = {
+      type: 'hoodie_order_2026',
+      timestamp: new Date().toISOString(),
+      name: state.custName,
+      email: state.custEmail,
+      phone: state.custPhone,
+      items: state.cart.map(item => ({
+        logo: item.logo,
+        size: item.size,
+        sizePrice: item.sizePrice,
+        personalizations: item.personalizations.map(p => `${p.name}: ${p.pzName}`).join(' | ') || 'None',
+        pzTotal: item.pzTotal,
+        itemTotal: item.itemTotal,
+      })),
+      itemCount: state.cart.length,
+      subtotal: subtotal,
+      ccFee: state.ccFee,
+      total: total,
+      payment: state.payment,
+    };
+
+    fetch(cfg.sheetsUrl, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+    .then(() => showPaymentScreen(payload, total))
+    .catch(() => {
+      const subject = encodeURIComponent(`Hoodie Order 2026 – ${state.custName} (${state.cart.length} hoodie${state.cart.length !== 1 ? 's' : ''})`);
+      const itemLines = state.cart.map((item, i) =>
+        `${i+1}. ${item.logo} / ${item.size} ($${item.sizePrice})` +
+        (item.personalizations.length ? '\n   ' + item.personalizations.map(p => `${p.name}: ${p.pzName} (+$${p.add})`).join('\n   ') : '')
+      ).join('\n');
+      const body = encodeURIComponent(
+        `Name: ${state.custName}\nEmail: ${state.custEmail}\nPhone: ${state.custPhone}\n\nItems:\n${itemLines}\n\nSubtotal: $${subtotal}\nCC Fee: $${state.ccFee}\nTOTAL: $${total}\nPayment: ${state.payment}`
+      );
+      window.location.href = `mailto:${cfg.emailTo}?subject=${subject}&body=${body}`;
+      showPaymentScreen(payload, total);
+    });
+  });
+
+  // ── Shared: build items HTML ──
+  function buildItemsHtml(payload, total) {
+    const itemsHtml = payload.items.map((item, idx) => `
+      <div class="conf-item">
+        <div class="conf-item-title">${idx + 1}. ${item.logo}</div>
+        <div class="conf-item-detail">
+          ${item.size} — $${item.sizePrice}.00
+          ${item.personalizations !== 'None' ? `<br><span style="color:var(--green)">${item.personalizations.split(' | ').map(s => '+ ' + s).join('<br>')}</span> +$${item.pzTotal}.00` : ''}
+          <strong style="float:right;color:var(--navy)">$${item.itemTotal}.00</strong>
+        </div>
+      </div>`).join('');
+    const ccRow = payload.ccFee > 0
+      ? `<div class="conf-row" style="color:var(--red);font-style:italic"><span>Credit card handling fee</span><span>+$${payload.ccFee}.00</span></div>`
+      : '';
+    return `
+      <h4>Your Order (${payload.itemCount} hoodie${payload.itemCount !== 1 ? 's' : ''})</h4>
+      ${itemsHtml}
+      <div style="margin-top:14px;">
+        ${payload.items.length > 1 ? `<div class="conf-row"><span>Subtotal</span><span>$${payload.subtotal}.00</span></div>` : ''}
+        ${ccRow}
+        <div class="conf-row total"><span>Total Due</span><span>$${total}.00</span></div>
+      </div>`;
+  }
+
+  // ── Screen 1: Payment pending ──
+  function showPaymentScreen(payload, total) {
+    // Store payload for final confirmation
+    state._payload = payload;
+    state._total = total;
+
+    document.getElementById('orderForm').style.display = 'none';
+    document.getElementById('screenPayment').style.display = 'block';
+
+    document.getElementById('paymentOrderSummary').innerHTML = buildItemsHtml(payload, total);
+
+    // Build pay button
+    const orderNote = encodeURIComponent(`Hoodie Order 2026 – ${payload.name} – ${payload.itemCount} hoodie(s)`);
+    let payBtn = '';
+    if (payload.payment === 'Venmo') {
+      payBtn = `<a href="https://venmo.com/${cfg.venmo}?txn=pay&amount=${total}&note=${orderNote}" target="_blank" onclick="enableConfirm()" class="btn-pay-now" style="background:#008CFF;color:#fff;">💙 Pay $${total}.00 via Venmo →</a>`;
+    } else if (payload.payment === 'PayPal') {
+      payBtn = `<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${encodeURIComponent(cfg.paypalEmail)}&amount=${total}&currency_code=USD&item_name=${orderNote}" target="_blank" onclick="enableConfirm()" class="btn-pay-now" style="background:#003087;color:#fff;">🅿️ Pay $${total}.00 via PayPal →</a>`;
+    } else if (payload.payment === 'Credit Card') {
+      const stripeUrl = `${cfg.stripeUrl}?prefilled_amount=${total * 100}&prefilled_email=${encodeURIComponent(payload.email)}&client_reference_id=${encodeURIComponent(payload.name + '|' + payload.itemCount + ' hoodies')}`;
+      payBtn = `<a href="${stripeUrl}" target="_blank" onclick="enableConfirm()" class="btn-pay-now" style="background:var(--navy);color:#fff;">💳 Pay $${total}.00 with Credit Card →</a>
+        <p style="font-size:12px;color:var(--muted);margin-top:6px;">Includes $${payload.ccFee} handling fee.</p>`;
+    }
+    document.getElementById('payBtnWrap').innerHTML = payBtn;
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── Enable confirm button after Pay is clicked ──
+  function enableConfirm() {
+    setTimeout(() => {
+      const btn = document.getElementById('btnConfirmPaid');
+      btn.disabled = false;
+      btn.classList.add('ready');
+      document.getElementById('payHint').textContent = 'Payment sent? Click the button above to complete your order.';
+    }, 500);
+  }
+
+  // ── Screen 2: Final confirmation ──
+  function confirmPayment() {
+    const payload = state._payload;
+    const total = state._total;
+    document.getElementById('screenPayment').style.display = 'none';
+    document.getElementById('screenConfirm').style.display = 'block';
+    document.getElementById('conf-name').textContent = payload.name;
+    document.getElementById('conf-summary').innerHTML = buildItemsHtml(payload, total) +
+      `<div style="margin-top:12px;font-size:13px;color:var(--muted);"><strong>Payment:</strong> ${payload.payment}</div>`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── Reset entire form ──
+  function resetForm() {
+    state.cart = [];
+    state.nextId = 1;
+    state.payment = '';
+    state.ccFee = 0;
+    document.getElementById('orderForm').reset();
+    document.getElementById('orderForm').style.display = 'block';
+    document.getElementById('screenPayment').style.display = 'none';
+    document.getElementById('screenConfirm').style.display = 'none';
+    document.getElementById('btnConfirmPaid').disabled = true;
+    document.getElementById('btnConfirmPaid').classList.remove('ready');
+    document.getElementById('payHint').textContent = 'Complete your payment above first, then this button will activate.';
+    document.getElementById('submitBtn').disabled = false;
+    document.getElementById('submitBtn').textContent = 'Submit My Order →';
+    resetBuilder();
+    renderCart();
+    updateSummary();
+    document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('selected'));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
