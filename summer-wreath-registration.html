@@ -461,26 +461,13 @@
 
             <div class="field-group">
               <label>Wreath Style <span class="req">*</span></label>
-              <div class="option-group" id="style-group">
-                <label class="option-label" onclick="selectOption(this, 'style-group')">
-                  <input type="radio" name="wreathStyle" value="Hello Summer" />
-                  <span class="opt-text">
-                    <span class="opt-title">Hello Summer 🌊</span>
-                    <span class="opt-sub">Teal, pink & yellow — beach & sunshine vibes</span>
-                  </span>
-                  <span class="opt-price">$50</span>
-                </label>
-                <label class="option-label" onclick="selectOption(this, 'style-group')">
-                  <input type="radio" name="wreathStyle" value="Sunflower Summer" />
-                  <span class="opt-text">
-                    <span class="opt-title">Sunflower Summer 🌻</span>
-                    <span class="opt-sub">Warm golds, greens & rustic summer harvest</span>
-                  </span>
-                  <span class="opt-price">$50</span>
-                </label>
+              <div style="background:#f0faf9; border:1.5px solid var(--border); border-radius:8px; padding:14px 16px; margin-bottom:12px;">
+                <p style="font-size:13px; font-weight:700; color:var(--dark); margin-bottom:6px;">☀️ Some summer theme ideas:</p>
+                <p style="font-size:13px; color:var(--muted); line-height:1.8;">Gnomes, Butterfly, Dragonfly, Cow, Beach, Ice Cream/Popsicles, Flip Flops, Flamingo, Hummingbird, Nautical, Ladybug, Bumblebee, Sunflower, Peaches, Blueberry, Strawberry, Cherry, Watermelon, Lemon — or write down your own idea!</p>
               </div>
+              <input type="text" id="f-style" placeholder="Type your wreath theme here…" />
               <p style="font-size:13px; color:var(--muted); margin-top:8px;">
-                💌 Amy will send you final sign choices before class.
+                💌 Amy will do her best to accommodate your choice and will be in touch before class with final sign options.
               </p>
             </div>
 
@@ -675,11 +662,11 @@
         const last  = document.getElementById('f-last').value.trim();
         const email = document.getElementById('f-email').value.trim();
         const date  = document.querySelector('input[name="classDate"]:checked');
-        const style = document.querySelector('input[name="wreathStyle"]:checked');
+        const style = document.getElementById('f-style').value.trim();
         if (!first || !last) { alert('Please enter your first and last name.'); return; }
         if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
         if (!date)  { alert('Please choose a class date.'); return; }
-        if (!style) { alert('Please choose a wreath style.'); return; }
+        if (!style) { alert('Please enter your wreath style or theme.'); return; }
         selectedDate = date.value;
         updateOrderSummary();
         updatePaymentTotal();
@@ -760,7 +747,7 @@
         phone:     document.getElementById('f-phone').value.trim() || 'Not provided',
         referral:  document.getElementById('f-referral').value || 'Not specified',
         classDate: selectedDate,
-        style:     document.querySelector('input[name="wreathStyle"]:checked')?.value || '',
+        style:     document.getElementById('f-style').value.trim(),
         notes:     document.getElementById('f-notes').value.trim() || 'None',
         addon:     hasAddon ? 'Yes (+$10)' : 'No',
         payment:   selectedPayment,
