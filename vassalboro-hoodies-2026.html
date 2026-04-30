@@ -224,6 +224,8 @@
       <p>Thanks, <strong id="conf-name"></strong>! Your payment is confirmed and your order is on its way to Amy. You're all set!</p>
       <div class="conf-summary" id="conf-summary"></div>
       <br>
+      <a id="btnEmailSelf" href="#" class="btn-pay-now" style="display:inline-block;background:var(--navy);color:#fff;margin-bottom:12px;">📧 Email this order to myself</a>
+      <br>
       <button class="btn-back" onclick="resetForm()">Place Another Order</button>
     </div>
 
@@ -826,7 +828,7 @@
 
     fetch(cfg.sheetsUrl, {
       method: 'POST', mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify(payload),
     })
     .then(() => showPaymentScreen(payload, total))
@@ -915,6 +917,22 @@
     document.getElementById('conf-name').textContent = payload.name;
     document.getElementById('conf-summary').innerHTML = buildItemsHtml(payload, total) +
       `<div style="margin-top:12px;font-size:13px;color:var(--muted);"><strong>Payment:</strong> ${payload.payment}</div>`;
+
+    // Build mailto link for buyer to email themselves their order details
+    const itemLines = payload.items.map((item, i) => {
+      let line = `${i+1}. ${item.logo} / ${item.size} ($${item.sizePrice})`;
+      if (item.personalizations && item.personalizations !== 'None') {
+        line += ` + ${item.personalizations} (+$${item.pzTotal})`;
+      }
+      line += ` = $${item.itemTotal}`;
+      return line;
+    }).join('%0A');
+    const emailSubject = encodeURIComponent(`Vassalboro Hoodies 2026 – Your Order Confirmation`);
+    const emailBody = `Name: ${encodeURIComponent(payload.name)}%0AEmail: ${encodeURIComponent(payload.email)}%0APhone: ${encodeURIComponent(payload.phone)}%0A%0AItems:%0A${itemLines}%0A%0ASubtotal: $${payload.subtotal}%0A` +
+      (payload.ccFee > 0 ? `CC Fee: $${payload.ccFee}%0A` : '') +
+      `Total: $${total}%0APayment: ${encodeURIComponent(payload.payment)}%0A%0AThank you for your order! Amy will be in touch.`;
+    document.getElementById('btnEmailSelf').href = `mailto:${encodeURIComponent(payload.email)}?subject=${emailSubject}&body=${emailBody}`;
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
