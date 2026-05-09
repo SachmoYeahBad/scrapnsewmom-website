@@ -970,7 +970,7 @@
     if (state.payment === 'Venmo') {
       btnWrap.innerHTML = `<a class="btn-pay-now" href="https://venmo.com/${cfg.venmo}" target="_blank" style="background:#008cff;color:#fff;" onclick="activateConfirm()">Open Venmo — @${cfg.venmo}</a>`;
     } else if (state.payment === 'PayPal') {
-      btnWrap.innerHTML = `<a class="btn-pay-now" href="https://paypal.me/ScrapNSewMom/${total.toFixed(2)}" target="_blank" style="background:#003087;color:#fff;" onclick="activateConfirm()">Open PayPal — $${total.toFixed(2)}</a>`;
+      btnWrap.innerHTML = `<a class="btn-pay-now" href="https://paypal.me/AmyHarrington781/${total.toFixed(2)}" target="_blank" style="background:#003087;color:#fff;" onclick="activateConfirm()">Open PayPal — $${total.toFixed(2)}</a>`;
     } else if (state.payment === 'Cash/Check') {
       btnWrap.innerHTML = `<p style="font-size:15px;font-weight:700;color:var(--plum);margin-bottom:8px;">💵 Pay $${total.toFixed(2)} cash or check to Amy Harrington.</p><p style="font-size:13px;color:var(--muted);">Make checks payable to <strong>Amy Harrington</strong>. Contact Amy to arrange drop-off.</p>`;
       setTimeout(activateConfirm, 500);
